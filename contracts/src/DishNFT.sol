@@ -176,7 +176,7 @@ contract DishNFT is ERC721, Ownable {
     /// @return SVG shape string
     function _getIngredientShape(uint256 ingredientId, uint256 amount, uint256 index) internal pure returns (string memory) {
         // Base position varies by index to avoid overlap
-        uint256 baseX = 150 + (index % 2 == 0 ? -30 : 30);
+        uint256 baseX = index % 2 == 0 ? 120 : 180;
         uint256 baseY = 130 + (index * 15);
 
         // Size varies by amount (minimum 10, scales with amount)

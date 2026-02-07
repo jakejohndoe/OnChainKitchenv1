@@ -9,8 +9,11 @@ remappings = [
 
 # Exclude problematic Certora files from compilation
 test = "test"
-exclude = [
-    "../lib/openzeppelin-contracts/certora/"
+
+# File system permissions for deployment scripts
+fs_permissions = [
+    { access = "read-write", path = "./" },
+    { access = "read-write", path = "../" }
 ]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
