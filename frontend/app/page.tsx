@@ -1,116 +1,118 @@
-'use client'
-
+import Link from 'next/link'
 import DuckMascot from '../components/DuckMascot'
-import ConnectWallet from '../components/ConnectWallet'
-import { useAccount } from 'wagmi'
 
-export default function Home() {
-  const { isConnected } = useAccount()
-
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
       {/* Header */}
-      <header className="w-full bg-white/80 backdrop-blur-sm border-b border-amber-200 sticky top-0 z-10">
+      <header className="w-full bg-white/80 backdrop-blur-sm border-b border-blue-200 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <DuckMascot size="small" expression="happy" />
             <h1 className="text-xl font-bold text-gray-800">ChainSchool</h1>
           </div>
-          <div className="text-sm text-gray-600 bg-amber-100 px-3 py-1 rounded-full">
-            Sepolia Testnet
-          </div>
+          <nav className="flex items-center space-x-6">
+            <Link href="/tutorials" className="text-gray-700 hover:text-blue-600 transition-colors">
+              Tutorials
+            </Link>
+            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
+              About
+            </Link>
+          </nav>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
-        <div className="text-center mb-12">
-          <DuckMascot size="large" expression="excited" className="mx-auto mb-6" />
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Welcome to On-Chain Kitchen!
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Learn Web3 by cooking! Discover ERC-20 tokens, ERC-1155 inventories, and ERC-721 NFTs
-            through a friendly tutorial that teaches by doing.
+      {/* Hero Section */}
+      <main className="max-w-6xl mx-auto px-6 py-16">
+        <div className="text-center mb-16">
+          <DuckMascot size="xlarge" expression="excited" className="mx-auto mb-8" />
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            Welcome to ChainSchool
+          </h1>
+          <p className="text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
+            Learn Web3 by doing. Master blockchain concepts through interactive, hands-on tutorials that make complex topics simple and fun.
           </p>
+          <Link
+            href="/tutorials"
+            className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl"
+          >
+            Browse Tutorials →
+          </Link>
         </div>
 
-        {/* Tutorial Overview */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
-            <div className="text-3xl mb-3">🚰</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Get Tokens</h3>
-            <p className="text-sm text-gray-600">
-              Claim free KitchenTokens from our faucet to start cooking
+        {/* Features */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-4xl mb-4">🎓</div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Learn by Doing</h3>
+            <p className="text-gray-600">
+              No boring theory. Jump straight into building real blockchain applications with guided tutorials.
             </p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
-            <div className="text-3xl mb-3">🛒</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Buy Ingredients</h3>
-            <p className="text-sm text-gray-600">
-              Spend tokens to collect eggs, cheese, bacon and more
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-4xl mb-4">🦆</div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Friendly Guidance</h3>
+            <p className="text-gray-600">
+              Our duck mascot explains complex concepts in simple terms, making Web3 accessible to everyone.
             </p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
-            <div className="text-3xl mb-3">👨‍🍳</div>
-            <h3 className="font-semibold text-gray-800 mb-2">Cook & Mint</h3>
-            <p className="text-sm text-gray-600">
-              Combine ingredients to create unique Dish NFTs
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div className="text-4xl mb-4">🔒</div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Safe Environment</h3>
+            <p className="text-gray-600">
+              Practice on testnets with free tokens. Learn without risk before deploying to mainnet.
             </p>
-          </div>
-        </div>
-
-        {/* Connection Section */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl mb-8">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">
-              Ready to Start Cooking?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              First, connect your wallet to Sepolia testnet. Don't worry - this is a safe learning environment!
-            </p>
-          </div>
-          <div className="max-w-md mx-auto">
-            <ConnectWallet />
           </div>
         </div>
 
-        {/* Next Steps - only show when connected */}
-        {isConnected && (
-          <div className="bg-green-50 p-6 rounded-xl border border-green-200 text-center">
-            <div className="text-2xl mb-3">🎉</div>
-            <h3 className="font-semibold text-green-800 mb-2">Wallet Connected!</h3>
-            <p className="text-green-700 mb-4">
-              Great! You're all set to begin your Web3 cooking adventure.
-            </p>
-            <button className="bg-green-200 text-green-800 px-6 py-2 rounded-lg hover:bg-green-300 transition-colors font-medium">
-              Start Tutorial →
-            </button>
-          </div>
-        )}
-
-        {/* Educational Note */}
-        <div className="mt-12 bg-amber-50 p-6 rounded-xl border border-amber-200">
-          <div className="flex items-start space-x-3">
-            <DuckMascot size="small" expression="curious" />
-            <div>
-              <h4 className="font-semibold text-amber-800 mb-2">Learning by Doing</h4>
-              <p className="text-amber-700 text-sm">
-                This tutorial uses real blockchain technology on Sepolia testnet. Everything you learn
-                here works the same way on mainnet, but with test tokens that have no real value.
-                Perfect for learning!
-              </p>
+        {/* What You'll Learn */}
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-12 rounded-3xl mb-16">
+          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">What You'll Learn</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white p-6 rounded-xl">
+              <div className="text-2xl mb-2">⛓️</div>
+              <h4 className="font-semibold text-gray-800">Blockchain Basics</h4>
+              <p className="text-sm text-gray-600 mt-2">Understand blocks, transactions, and consensus</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl">
+              <div className="text-2xl mb-2">💎</div>
+              <h4 className="font-semibold text-gray-800">Smart Contracts</h4>
+              <p className="text-sm text-gray-600 mt-2">Write and deploy Solidity contracts</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl">
+              <div className="text-2xl mb-2">🪙</div>
+              <h4 className="font-semibold text-gray-800">Token Standards</h4>
+              <p className="text-sm text-gray-600 mt-2">Master ERC-20, ERC-721, and ERC-1155</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl">
+              <div className="text-2xl mb-2">🌐</div>
+              <h4 className="font-semibold text-gray-800">DApp Development</h4>
+              <p className="text-sm text-gray-600 mt-2">Build full-stack Web3 applications</p>
             </div>
           </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center bg-white p-12 rounded-3xl shadow-sm border border-gray-100">
+          <DuckMascot size="medium" expression="happy" className="mx-auto mb-6" />
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Ready to Start Learning?</h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Begin your Web3 journey with our interactive tutorials. No prior blockchain experience needed!
+          </p>
+          <Link
+            href="/tutorials"
+            className="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg hover:shadow-xl"
+          >
+            Start Learning Now →
+          </Link>
         </div>
       </main>
 
       {/* Footer */}
       <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-600 text-sm">
-            Built with ❤️ for Web3 education • Powered by{' '}
-            <span className="font-medium">Sepolia Testnet</span>
+          <p className="text-gray-600">
+            © 2024 ChainSchool • Learn Web3 by Doing • Open Source Education
           </p>
         </div>
       </footer>

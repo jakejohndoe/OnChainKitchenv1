@@ -1,0 +1,104 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import DuckMascot from '../../../components/DuckMascot'
+
+const steps = [
+  { id: 'intro', title: 'Welcome', path: '/tutorials/on-chain-kitchen' },
+  { id: 'faucet', title: 'Faucet', path: '/tutorials/on-chain-kitchen/faucet' },
+  { id: 'shop', title: 'Shop', path: '/tutorials/on-chain-kitchen/shop' },
+  { id: 'pantry', title: 'Pantry', path: '/tutorials/on-chain-kitchen/pantry' },
+  { id: 'oven', title: 'Oven', path: '/tutorials/on-chain-kitchen/oven' },
+  { id: 'cookbook', title: 'Cookbook', path: '/tutorials/on-chain-kitchen/cookbook' },
+]
+
+export default function OnChainKitchenLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const pathname = usePathname()
+  const currentStepIndex = steps.findIndex(step => step.path === pathname)
+  const currentStep = steps[currentStepIndex]
+  const prevStep = currentStepIndex > 0 ? steps[currentStepIndex - 1] : null
+  const nextStep = currentStepIndex < steps.length - 1 ? steps[currentStepIndex + 1] : null
+
+  // Don't show navigation on the intro page
+  const showNavigation = pathname !== '/tutorials/on-chain-kitchen'
+
+  return (
+    <div className="min-h-screen">
+      {children}
+
+      {/* Step Navigation */}
+      {showNavigation && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-20">
+          <div className="max-w-6xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Previous Button */}
+              <div className="w-32">
+                {prevStep && (
+                  <Link
+                    href={prevStep.path}
+                    className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors"
+                  >
+                    <span>←</span>
+                    <span>{prevStep.title}</span>
+                  </Link>
+                )}
+              </div>
+
+              {/* Progress Indicator */}
+              <div className="flex items-center space-x-3">
+                {steps.slice(1).map((step, index) => (
+                  <div key={step.id} className="flex items-center">
+                    <Link
+                      href={step.path}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-medium transition-all ${
+                        index + 1 < currentStepIndex
+                          ? 'bg-green-500 text-white'
+                          : index + 1 === currentStepIndex
+                          ? 'bg-amber-500 text-white shadow-lg scale-110'
+                          : 'bg-gray-200 text-gray-500'
+                      }`}
+                    >
+                      {index + 1 < currentStepIndex ? '✓' : index + 1}
+                    </Link>
+                    {index < steps.length - 2 && (
+                      <div
+                        className={`w-12 h-1 mx-1 rounded ${
+                          index + 1 < currentStepIndex ? 'bg-green-500' : 'bg-gray-200'
+                        }`}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Next Button */}
+              <div className="w-32 text-right">
+                {nextStep && (
+                  <Link
+                    href={nextStep.path}
+                    className="inline-flex items-center space-x-2 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors font-medium"
+                  >
+                    <span>{nextStep.title}</span>
+                    <span>→</span>
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Step Counter */}
+            {currentStepIndex > 0 && (
+              <div className="text-center mt-2 text-sm text-gray-600">
+                Step {currentStepIndex} of {steps.length - 1}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

@@ -1,7 +1,7 @@
 'use client'
 
 interface DuckMascotProps {
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large' | 'xlarge'
   expression?: 'happy' | 'curious' | 'excited'
   className?: string
 }
@@ -14,7 +14,8 @@ export default function DuckMascot({
   const sizeClasses = {
     small: 'w-12 h-12',
     medium: 'w-16 h-16',
-    large: 'w-24 h-24'
+    large: 'w-24 h-24',
+    xlarge: 'w-32 h-32'
   }
 
   return (
