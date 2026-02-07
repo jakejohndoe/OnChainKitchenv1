@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { DISH_NFT_ABI, DISH_NFT_ADDRESS, INGREDIENTS_ABI, INGREDIENTS_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
 
-// Mock data for demonstration
-const AVAILABLE_INGREDIENTS = [
-  { id: 1, name: 'Egg', emoji: '🥚', owned: 3 },
-  { id: 2, name: 'Cheese', emoji: '🧀', owned: 2 },
-  { id: 3, name: 'Bacon', emoji: '🥓', owned: 1 },
+const INGREDIENTS: Ingredient[] = [
+  { id: 1, name: 'Egg', emoji: '🥚' },
+  { id: 2, name: 'Cheese', emoji: '🧀' },
+  { id: 3, name: 'Bacon', emoji: '🥓' }
 ]
 
 const RECIPES = [
@@ -35,16 +36,67 @@ const RECIPES = [
 ]
 
 export default function OvenInterface() {
+  const { address, isConnected } = useAccount()
   const [selectedIngredients, setSelectedIngredients] = useState<Record<number, number>>({})
   const [showTooltip, setShowTooltip] = useState(false)
-  const [isCooking, setIsCooking] = useState(false)
-  const [lastDishMinted, setLastDishMinted] = useState<string | null>(null)
+
+  // Read ingredient balances
+  const { data: eggBalance, refetch: refetchEggBalance } = useReadContract({
+    address: INGREDIENTS_ADDRESS,
+    abi: INGREDIENTS_ABI,
+    functionName: 'balanceOf',
+    args: address ? [address, 1n] : undefined,
+    query: { enabled: !!address && !!INGREDIENTS_ADDRESS }
+  })
+
+  const { data: cheeseBalance, refetch: refetchCheeseBalance } = useReadContract({
+    address: INGREDIENTS_ADDRESS,
+    abi: INGREDIENTS_ABI,
+    functionName: 'balanceOf',
+    args: address ? [address, 2n] : undefined,
+    query: { enabled: !!address && !!INGREDIENTS_ADDRESS }
+  })
+
+  const { data: baconBalance, refetch: refetchBaconBalance } = useReadContract({
+    address: INGREDIENTS_ADDRESS,
+    abi: INGREDIENTS_ABI,
+    functionName: 'balanceOf',
+    args: address ? [address, 3n] : undefined,
+    query: { enabled: !!address && !!INGREDIENTS_ADDRESS }
+  })
+
+  // Write contract hooks for cooking
+  const { writeContract: cook, isPending, error, data: cookHash } = useWriteContract()
+
+  // Wait for transaction receipt
+  const { isLoading: isCookConfirming, isSuccess: isCookSuccess } = useWaitForTransactionReceipt({
+    hash: cookHash,
+  })
+
+  // Refetch balances and reset selection when cooking is successful
+  useEffect(() => {
+    if (isCookSuccess) {
+      refetchEggBalance()
+      refetchCheeseBalance()
+      refetchBaconBalance()
+      setSelectedIngredients({})
+    }
+  }, [isCookSuccess, refetchEggBalance, refetchCheeseBalance, refetchBaconBalance])
+
+  const getIngredientBalance = (ingredientId: number): bigint => {
+    switch (ingredientId) {
+      case 1: return eggBalance || 0n
+      case 2: return cheeseBalance || 0n
+      case 3: return baconBalance || 0n
+      default: return 0n
+    }
+  }
 
   const handleIngredientChange = (id: number, change: number) => {
     setSelectedIngredients(prev => {
       const current = prev[id] || 0
-      const ingredient = AVAILABLE_INGREDIENTS.find(i => i.id === id)
-      const newAmount = Math.max(0, Math.min(current + change, ingredient?.owned || 0))
+      const owned = Number(getIngredientBalance(id))
+      const newAmount = Math.max(0, Math.min(current + change, owned))
 
       if (newAmount === 0) {
         const { [id]: _, ...rest } = prev
@@ -75,18 +127,42 @@ export default function OvenInterface() {
   }
 
   const handleCook = async () => {
-    setIsCooking(true)
+    if (!DISH_NFT_ADDRESS || !address) return
 
-    // Simulate transaction
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    const ingredients = Object.entries(selectedIngredients)
+      .filter(([_, amount]) => amount > 0)
+      .map(([id, amount]) => ({ id: Number(id), amount }))
 
-    const recipe = matchesRecipe()
-    setLastDishMinted(recipe?.name || 'Custom Dish')
-    setSelectedIngredients({})
-    setIsCooking(false)
+    if (ingredients.length === 0) return
+
+    const ingredientIds = ingredients.map(ing => BigInt(ing.id))
+    const amounts = ingredients.map(ing => BigInt(ing.amount))
+
+    cook({
+      address: DISH_NFT_ADDRESS,
+      abi: DISH_NFT_ABI,
+      functionName: 'cook',
+      args: [ingredientIds, amounts]
+    })
   }
 
   const hasSelectedIngredients = Object.keys(selectedIngredients).length > 0
+
+  if (!isConnected) {
+    return (
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+        <p className="text-gray-600">Please connect your wallet to access the oven</p>
+      </div>
+    )
+  }
+
+  if (!DISH_NFT_ADDRESS || !INGREDIENTS_ADDRESS) {
+    return (
+      <div className="bg-amber-100 p-6 rounded-xl border border-amber-300 text-center">
+        <p className="text-amber-800">Contract addresses not configured</p>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -123,35 +199,38 @@ export default function OvenInterface() {
         <h3 className="text-xl font-bold text-gray-800 mb-4">🥘 Select Your Ingredients</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          {AVAILABLE_INGREDIENTS.map(ingredient => (
-            <div key={ingredient.id} className="border border-gray-200 rounded-lg p-4">
-              <div className="text-center">
-                <div className="text-4xl mb-2">{ingredient.emoji}</div>
-                <h4 className="font-semibold text-gray-800 mb-1">{ingredient.name}</h4>
-                <p className="text-sm text-gray-600 mb-3">You have: {ingredient.owned}</p>
+          {INGREDIENTS.map(ingredient => {
+            const balance = Number(getIngredientBalance(ingredient.id))
+            return (
+              <div key={ingredient.id} className="border border-gray-200 rounded-lg p-4">
+                <div className="text-center">
+                  <div className="text-4xl mb-2">{ingredient.emoji}</div>
+                  <h4 className="font-semibold text-gray-800 mb-1">{ingredient.name}</h4>
+                  <p className="text-sm text-gray-600 mb-3">You have: {balance}</p>
 
-                <div className="flex items-center justify-center space-x-2">
-                  <button
-                    onClick={() => handleIngredientChange(ingredient.id, -1)}
-                    className="w-8 h-8 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors"
-                    disabled={!selectedIngredients[ingredient.id]}
-                  >
-                    -
-                  </button>
-                  <span className="w-12 text-center font-medium">
-                    {selectedIngredients[ingredient.id] || 0}
-                  </span>
-                  <button
-                    onClick={() => handleIngredientChange(ingredient.id, 1)}
-                    className="w-8 h-8 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
-                    disabled={(selectedIngredients[ingredient.id] || 0) >= ingredient.owned}
-                  >
-                    +
-                  </button>
+                  <div className="flex items-center justify-center space-x-2">
+                    <button
+                      onClick={() => handleIngredientChange(ingredient.id, -1)}
+                      className="w-8 h-8 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors"
+                      disabled={!selectedIngredients[ingredient.id]}
+                    >
+                      -
+                    </button>
+                    <span className="w-12 text-center font-medium">
+                      {selectedIngredients[ingredient.id] || 0}
+                    </span>
+                    <button
+                      onClick={() => handleIngredientChange(ingredient.id, 1)}
+                      className="w-8 h-8 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+                      disabled={(selectedIngredients[ingredient.id] || 0) >= balance}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Recipe Preview */}
@@ -160,7 +239,7 @@ export default function OvenInterface() {
             <h4 className="font-semibold text-gray-800 mb-2">🍳 Recipe Preview</h4>
             <div className="flex items-center space-x-3 mb-3">
               {Object.entries(selectedIngredients).map(([id, amount]) => {
-                const ingredient = AVAILABLE_INGREDIENTS.find(i => i.id === Number(id))
+                const ingredient = INGREDIENTS.find(i => i.id === Number(id))
                 return ingredient && amount > 0 ? (
                   <div key={id} className="flex items-center space-x-1">
                     <span className="text-2xl">{ingredient.emoji}</span>
@@ -190,22 +269,40 @@ export default function OvenInterface() {
         <div className="mt-6 text-center">
           <button
             onClick={handleCook}
-            disabled={!hasSelectedIngredients || isCooking}
+            disabled={!hasSelectedIngredients || isPending || isCookConfirming}
             className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
           >
-            {isCooking ? '🔥 Cooking...' : '👨‍🍳 Start Cooking!'}
+            {isPending || isCookConfirming ? '🔥 Cooking...' : '👨‍🍳 Start Cooking!'}
           </button>
         </div>
 
-        {/* Success Message */}
-        {lastDishMinted && !isCooking && (
+        {/* Transaction Status */}
+        {isPending && (
+          <div className="mt-4 bg-blue-100 p-3 rounded-lg">
+            <p className="text-blue-800 text-sm">🔄 Transaction pending...</p>
+          </div>
+        )}
+
+        {isCookConfirming && (
+          <div className="mt-4 bg-blue-100 p-3 rounded-lg">
+            <p className="text-blue-800 text-sm">⏳ Waiting for confirmation...</p>
+          </div>
+        )}
+
+        {isCookSuccess && (
           <div className="mt-4 bg-green-100 p-4 rounded-lg text-center">
             <p className="text-green-800 font-medium text-lg">
-              ✅ Successfully minted: {lastDishMinted} NFT!
+              ✅ Successfully minted dish NFT!
             </p>
             <p className="text-green-700 text-sm mt-1">
               Your ingredients have been burned and your dish NFT has been created.
             </p>
+          </div>
+        )}
+
+        {error && (
+          <div className="mt-4 bg-red-100 p-3 rounded-lg">
+            <p className="text-red-800 text-sm">❌ Error: {error.message}</p>
           </div>
         )}
       </div>
@@ -214,33 +311,39 @@ export default function OvenInterface() {
       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
         <h3 className="text-xl font-bold text-gray-800 mb-4">📖 Known Recipes</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {RECIPES.map(recipe => (
-            <div
-              key={recipe.id}
-              className={`border rounded-lg p-4 transition-all ${
-                canCookRecipe(recipe)
-                  ? 'border-green-300 bg-green-50'
-                  : 'border-gray-200 bg-gray-50'
-              }`}
-            >
-              <div className="text-center">
-                <div className="text-3xl mb-2">{recipe.emoji}</div>
-                <h4 className="font-semibold text-gray-800">{recipe.name}</h4>
-                <p className="text-sm text-gray-600 mb-2">{recipe.description}</p>
-                <div className="flex justify-center space-x-2">
-                  {recipe.ingredients.map(ing => {
-                    const ingredient = AVAILABLE_INGREDIENTS.find(i => i.id === ing.id)
-                    return (
-                      <div key={ing.id} className="flex items-center space-x-1">
-                        <span>{ingredient?.emoji}</span>
-                        <span className="text-xs">×{ing.amount}</span>
-                      </div>
-                    )
-                  })}
+          {RECIPES.map(recipe => {
+            const canCook = recipe.ingredients.every(req => Number(getIngredientBalance(req.id)) >= req.amount)
+            return (
+              <div
+                key={recipe.id}
+                className={`border rounded-lg p-4 transition-all ${
+                  canCook ? 'border-green-300 bg-green-50' : 'border-gray-200 bg-gray-50'
+                }`}
+              >
+                <div className="text-center">
+                  <div className="text-3xl mb-2">{recipe.emoji}</div>
+                  <h4 className="font-semibold text-gray-800">{recipe.name}</h4>
+                  <p className="text-sm text-gray-600 mb-2">{recipe.description}</p>
+                  <div className="flex justify-center space-x-2">
+                    {recipe.ingredients.map(ing => {
+                      const ingredient = INGREDIENTS.find(i => i.id === ing.id)
+                      return (
+                        <div key={ing.id} className="flex items-center space-x-1">
+                          <span>{ingredient?.emoji}</span>
+                          <span className="text-xs">×{ing.amount}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <div className={`mt-2 text-xs px-2 py-1 rounded ${
+                    canCook ? 'bg-green-200 text-green-700' : 'bg-gray-200 text-gray-600'
+                  }`}>
+                    {canCook ? 'Can Cook!' : 'Need More Ingredients'}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
 

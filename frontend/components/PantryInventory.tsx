@@ -2,42 +2,8 @@
 
 import { useState } from 'react'
 import { useAccount, useReadContract } from 'wagmi'
+import { INGREDIENTS_ABI, INGREDIENTS_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
-
-// ABI for Ingredients contract
-const INGREDIENTS_ABI = [
-  {
-    "inputs": [{"internalType": "address", "name": "account", "type": "address"}, {"internalType": "uint256", "name": "id", "type": "uint256"}],
-    "name": "balanceOf",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "EGG",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "CHEESE",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "BACON",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  }
-] as const
-
-// Placeholder for ingredients contract address - will need to be set
-const INGREDIENTS_ADDRESS = process.env.NEXT_PUBLIC_INGREDIENTS_ADDRESS as `0x${string}`
 
 interface Ingredient {
   id: number

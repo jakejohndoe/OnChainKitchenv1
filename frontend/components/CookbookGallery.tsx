@@ -1,52 +1,56 @@
 'use client'
 
 import { useState } from 'react'
+import { useAccount, useReadContract } from 'wagmi'
+import { DISH_NFT_ABI, DISH_NFT_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
 
-// Mock NFT data for demonstration
-const MOCK_DISHES = [
-  {
-    id: 1,
-    name: 'Scrambled Eggs #1',
-    image: '🍳',
-    recipe: [
-      { name: 'Egg', amount: 2, emoji: '🥚' }
-    ],
-    cookedAt: '2024-02-07 10:30',
-    tokenId: '1'
-  },
-  {
-    id: 2,
-    name: 'Cheese Omelette #2',
-    image: '🧀🍳',
-    recipe: [
-      { name: 'Egg', amount: 2, emoji: '🥚' },
-      { name: 'Cheese', amount: 1, emoji: '🧀' }
-    ],
-    cookedAt: '2024-02-07 11:45',
-    tokenId: '2'
-  },
-  {
-    id: 3,
-    name: 'Breakfast Special #3',
-    image: '🍽️',
-    recipe: [
-      { name: 'Egg', amount: 2, emoji: '🥚' },
-      { name: 'Cheese', amount: 1, emoji: '🧀' },
-      { name: 'Bacon', amount: 1, emoji: '🥓' }
-    ],
-    cookedAt: '2024-02-07 12:15',
-    tokenId: '3'
-  }
+interface DishNFT {
+  tokenId: bigint
+  tokenURI: string
+  svgImage?: string
+}
+
+const INGREDIENTS = [
+  { id: 1, name: 'Egg', emoji: '🥚' },
+  { id: 2, name: 'Cheese', emoji: '🧀' },
+  { id: 3, name: 'Bacon', emoji: '🥓' }
 ]
 
 export default function CookbookGallery() {
-  const [selectedDish, setSelectedDish] = useState<typeof MOCK_DISHES[0] | null>(null)
+  const { address, isConnected } = useAccount()
+  const [selectedDish, setSelectedDish] = useState<DishNFT | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
 
-  // For demo, we'll show the mock dishes
-  const dishes = MOCK_DISHES
-  const hasDishes = dishes.length > 0
+  // Read the total number of NFTs owned by the user
+  const { data: balance } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'balanceOf',
+    args: address ? [address] : undefined,
+    query: { enabled: !!address && !!DISH_NFT_ADDRESS }
+  })
+
+  // For now, we'll show dishes count and basic info
+  // In a full implementation, we'd iterate through tokenOfOwnerByIndex to get all token IDs
+  const dishCount = balance ? Number(balance) : 0
+  const hasDishes = dishCount > 0
+
+  if (!isConnected) {
+    return (
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center">
+        <p className="text-gray-600">Please connect your wallet to view your cookbook</p>
+      </div>
+    )
+  }
+
+  if (!DISH_NFT_ADDRESS) {
+    return (
+      <div className="bg-amber-100 p-6 rounded-xl border border-amber-300 text-center">
+        <p className="text-amber-800">DishNFT contract address not configured</p>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -84,14 +88,14 @@ export default function CookbookGallery() {
           <h3 className="text-xl font-bold text-gray-800">📊 Collection Stats</h3>
           <div className="flex space-x-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">{dishes.length}</div>
+              <div className="text-2xl font-bold text-purple-600">{dishCount}</div>
               <p className="text-sm text-gray-600">Total Dishes</p>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">
-                {dishes.reduce((sum, d) => sum + d.recipe.reduce((s, r) => s + r.amount, 0), 0)}
+                {dishCount > 0 ? dishCount * 2 : 0}
               </div>
-              <p className="text-sm text-gray-600">Ingredients Used</p>
+              <p className="text-sm text-gray-600">Approx. Ingredients Used</p>
             </div>
           </div>
         </div>
@@ -102,35 +106,21 @@ export default function CookbookGallery() {
         <h3 className="text-xl font-bold text-gray-800 mb-6">🖼️ Your Dish Collection</h3>
 
         {hasDishes ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {dishes.map((dish) => (
-              <div
-                key={dish.id}
-                onClick={() => setSelectedDish(dish)}
-                className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-all cursor-pointer transform hover:-translate-y-1"
-              >
-                {/* NFT Image */}
-                <div className="bg-gradient-to-br from-purple-100 to-indigo-100 p-8 text-center">
-                  <div className="text-6xl mb-2">{dish.image}</div>
-                  <div className="bg-white px-2 py-1 rounded text-xs text-gray-600 inline-block">
-                    #{dish.tokenId}
-                  </div>
-                </div>
-
-                {/* NFT Details */}
-                <div className="p-4">
-                  <h4 className="font-semibold text-gray-800 mb-2">{dish.name}</h4>
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {dish.recipe.map((ing, idx) => (
-                      <span key={idx} className="text-sm">
-                        {ing.emoji}×{ing.amount}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-xs text-gray-500">Cooked: {dish.cookedAt}</p>
-                </div>
-              </div>
-            ))}
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🍽️✨</div>
+            <h4 className="text-xl font-semibold text-gray-800 mb-3">You Have {dishCount} Dish NFTs!</h4>
+            <p className="text-gray-600 mb-6 max-w-md mx-auto">
+              Your dishes are stored on the blockchain as unique NFTs. Each one has its recipe permanently recorded on-chain.
+            </p>
+            <div className="bg-purple-50 p-6 rounded-lg max-w-md mx-auto">
+              <h5 className="font-semibold text-purple-800 mb-2">🔗 On-Chain Features</h5>
+              <ul className="text-sm text-purple-700 space-y-1 text-left">
+                <li>✅ Unique token IDs for each dish</li>
+                <li>✅ Recipe ingredients stored permanently</li>
+                <li>✅ SVG images generated on-chain</li>
+                <li>✅ Full ERC-721 compatibility</li>
+              </ul>
+            </div>
           </div>
         ) : (
           <div className="text-center py-12">
@@ -149,56 +139,6 @@ export default function CookbookGallery() {
         )}
       </div>
 
-      {/* Selected Dish Modal */}
-      {selectedDish && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 z-50"
-          onClick={() => setSelectedDish(null)}
-        >
-          <div
-            className="bg-white rounded-2xl max-w-lg w-full p-8"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="text-center mb-6">
-              <div className="text-8xl mb-4">{selectedDish.image}</div>
-              <h3 className="text-2xl font-bold text-gray-800">{selectedDish.name}</h3>
-              <p className="text-gray-600">Token ID: #{selectedDish.tokenId}</p>
-            </div>
-
-            <div className="bg-gray-50 p-4 rounded-lg mb-4">
-              <h4 className="font-semibold text-gray-800 mb-2">📝 On-Chain Recipe</h4>
-              <div className="space-y-2">
-                {selectedDish.recipe.map((ing, idx) => (
-                  <div key={idx} className="flex items-center justify-between">
-                    <span className="flex items-center space-x-2">
-                      <span className="text-2xl">{ing.emoji}</span>
-                      <span className="text-gray-700">{ing.name}</span>
-                    </span>
-                    <span className="text-gray-600">×{ing.amount}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-purple-50 p-4 rounded-lg mb-6">
-              <h4 className="font-semibold text-purple-800 mb-1">🔗 Blockchain Data</h4>
-              <p className="text-sm text-purple-700">
-                Cooked on: {selectedDish.cookedAt}
-              </p>
-              <p className="text-xs text-purple-600 mt-1">
-                This recipe is permanently stored on the Sepolia blockchain
-              </p>
-            </div>
-
-            <button
-              onClick={() => setSelectedDish(null)}
-              className="w-full bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition-colors font-medium"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Ownership Info */}
       <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-xl">

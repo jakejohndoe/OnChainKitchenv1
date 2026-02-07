@@ -1,48 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
-import { KITCHEN_TOKEN_ADDRESS } from '../lib/wagmi'
+import { KITCHEN_TOKEN_ABI, KITCHEN_TOKEN_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
-
-// ABI for KitchenToken contract
-const KITCHEN_TOKEN_ABI = [
-  {
-    "inputs": [],
-    "name": "faucet",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
-    "name": "balanceOf",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
-    "name": "canClaimFaucet",
-    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
-    "name": "timeUntilNextClaim",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "FAUCET_AMOUNT",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  }
-] as const
 
 export default function FaucetClaim() {
   const { address, isConnected } = useAccount()
@@ -107,9 +68,11 @@ export default function FaucetClaim() {
   }
 
   // Refetch balance when transaction is confirmed
-  if (isConfirmed) {
-    refetchBalance()
-  }
+  useEffect(() => {
+    if (isConfirmed) {
+      refetchBalance()
+    }
+  }, [isConfirmed, refetchBalance])
 
   const formatTokenAmount = (amount: bigint | undefined) => {
     if (!amount) return '0'

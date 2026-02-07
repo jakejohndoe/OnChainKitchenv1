@@ -1,76 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
-import { KITCHEN_TOKEN_ADDRESS } from '../lib/wagmi'
+import { KITCHEN_TOKEN_ABI, KITCHEN_TOKEN_ADDRESS, INGREDIENTS_ABI, INGREDIENTS_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
-
-// ABI for Ingredients contract
-const INGREDIENTS_ABI = [
-  {
-    "inputs": [{"internalType": "uint256[]", "name": "ids", "type": "uint256[]"}, {"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}],
-    "name": "buyBatch",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{"internalType": "address", "name": "account", "type": "address"}, {"internalType": "uint256", "name": "id", "type": "uint256"}],
-    "name": "balanceOf",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "EGG",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "CHEESE",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "BACON",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "PRICE_PER_INGREDIENT",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  }
-] as const
-
-// ABI for KitchenToken contract
-const KITCHEN_TOKEN_ABI = [
-  {
-    "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
-    "name": "balanceOf",
-    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}],
-    "name": "approve",
-    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
-] as const
-
-// Placeholder for ingredients contract address - will need to be set
-const INGREDIENTS_ADDRESS = process.env.NEXT_PUBLIC_INGREDIENTS_ADDRESS as `0x${string}`
 
 interface Ingredient {
   id: number
@@ -204,12 +137,14 @@ export default function ShopInterface() {
   }
 
   // Refetch balances when transaction is successful
-  if (isBuySuccess) {
-    refetchTokenBalance()
-    refetchEggBalance()
-    refetchCheeseBalance()
-    refetchBaconBalance()
-  }
+  useEffect(() => {
+    if (isBuySuccess) {
+      refetchTokenBalance()
+      refetchEggBalance()
+      refetchCheeseBalance()
+      refetchBaconBalance()
+    }
+  }, [isBuySuccess, refetchTokenBalance, refetchEggBalance, refetchCheeseBalance, refetchBaconBalance])
 
   const formatTokenAmount = (amount: bigint | undefined) => {
     if (!amount) return '0'
