@@ -7,7 +7,7 @@ import "../src/Ingredients.sol";
 import "../src/DishNFT.sol";
 
 /// @title Deploy
-/// @notice Deployment script for ChainSchool contracts
+/// @notice Deployment script for Trustless Academy contracts
 contract Deploy is Script {
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");

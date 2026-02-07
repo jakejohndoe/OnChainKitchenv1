@@ -25,7 +25,7 @@ export default function OnChainKitchenIntro() {
             <div className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
                 <DuckMascot size="small" expression="happy" />
-                <h1 className="text-xl font-bold text-gray-800">ChainSchool</h1>
+                <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
               </Link>
               <span className="text-gray-400">/</span>
               <Link href="/tutorials" className="text-gray-600 hover:text-amber-600">

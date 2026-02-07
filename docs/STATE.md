@@ -1,4 +1,4 @@
-# ChainSchool: On-Chain Kitchen - Build Status
+# Trustless Academy: On-Chain Kitchen - Build Status
 
 ## Completed ✅
 
@@ -86,6 +86,30 @@
 - **Loading states added** - Transaction pending, confirming, success, and error handling
 - **Error handling implemented** - Comprehensive error display for all contract interactions
 
+### Trustless Academy Rebrand Complete ✅
+
+- **Documentation updated** - README.md, STATE.md, GAME_DESIGN.md, UI_STYLE.md, LOCAL_TESTING.md
+- **Frontend branding updated** - All page headers, footers, and site metadata
+- **Contract metadata updated** - NFT collection name, metadata descriptions, constructor names
+- **Development files updated** - Makefile, .env.example, deployment scripts
+- **Test files updated** - Contract test assertions for new naming
+- **User-facing copy updated** - All references changed from ChainSchool to Trustless Academy
+
+### Faucet Improvements Complete ✅
+
+- **Live countdown timer implemented** - Real-time countdown showing hours:minutes:seconds
+- **Last claim timestamp integration** - Reads lastFaucetClaim from KitchenToken contract
+- **Dynamic UI updates** - Button appears when countdown reaches zero
+- **Precise time calculation** - Updates every second until cooldown expires
+
+### Contracts Redeployed with New Branding ✅
+
+- **Fresh Sepolia deployment** - All three contracts redeployed with Trustless Academy branding
+- **Updated metadata URLs** - Ingredients contract now points to trustlessacademy.com
+- **NFT collection rebranded** - DishNFT collection name updated to "Trustless Academy Dishes"
+- **Reset state** - All user balances and NFTs reset due to new contract instances
+- **Environment updated** - Frontend .env.local reflects redeployment status
+
 ## Next 📋
 
 1. **Complete end-to-end testing** - Manual testing of full user flow with real wallet
@@ -153,4 +177,4 @@ None currently. All smart contract development complete and ready for frontend i
 
 ---
 
-*Last updated: All frontend screens successfully wired up with real contract interactions - ready for end-to-end testing*
+*Last updated: Faucet countdown timer fixed and contracts redeployed with Trustless Academy branding*

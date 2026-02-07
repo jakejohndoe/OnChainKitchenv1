@@ -1,6 +1,6 @@
 # Local End-to-End Testing Guide
 
-This guide walks through setting up and testing the full ChainSchool application locally using Anvil.
+This guide walks through setting up and testing the full Trustless Academy application locally using Anvil.
 
 ## Prerequisites
 

@@ -51,7 +51,7 @@ contract DishNFT is ERC721, Ownable {
 
     /// @notice Creates the DishNFT contract
     /// @param _owner The initial owner of the contract
-    constructor(address _owner) ERC721("ChainSchool Dishes", "DISH") Ownable(_owner) {}
+    constructor(address _owner) ERC721("Trustless Academy Dishes", "DISH") Ownable(_owner) {}
 
     /// @notice Sets the Ingredients contract address
     /// @param _ingredients Address of the Ingredients contract
@@ -131,7 +131,7 @@ contract DishNFT is ERC721, Ownable {
             '{"name": "Dish #', tokenId.toString(),
             '", "description": "A delicious dish made with ',
             _formatIngredientList(recipe.ingredientIds, recipe.amounts),
-            ' in the ChainSchool On-Chain Kitchen tutorial.",',
+            ' in the Trustless Academy On-Chain Kitchen tutorial.",',
             ' "image": "', imageURI, '",',
             ' "attributes": [',
                 '{"trait_type": "Ingredient Count", "value": ', recipe.ingredientIds.length.toString(), '},',

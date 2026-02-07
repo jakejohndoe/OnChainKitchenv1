@@ -1,4 +1,4 @@
-# ChainSchool: On-Chain Kitchen - Contract Development Makefile
+# Trustless Academy: On-Chain Kitchen - Contract Development Makefile
 
 # Default values
 CHAIN_ID ?= 31337
@@ -8,7 +8,7 @@ PRIVATE_KEY ?= 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff8
 # Help target
 .PHONY: help
 help:
-	@echo "ChainSchool: On-Chain Kitchen - Development Commands"
+	@echo "Trustless Academy: On-Chain Kitchen - Development Commands"
 	@echo ""
 	@echo "Local Development:"
 	@echo "  start-anvil     Start Anvil local blockchain"

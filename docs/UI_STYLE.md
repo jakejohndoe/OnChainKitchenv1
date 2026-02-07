@@ -1,8 +1,8 @@
-# ChainSchool: On-Chain Kitchen - UI Style Guide
+# Trustless Academy: On-Chain Kitchen - UI Style Guide
 
 ## Design Philosophy
 
-ChainSchool's visual identity is **"Doodles meets Codédex, with Adventure Time energy"** — friendly, approachable, and educational without being childish.
+Trustless Academy's visual identity is **"Doodles meets Codédx, with Adventure Time energy"** — friendly, approachable, and educational without being childish.
 
 ### Core Principles
 - **Calm over Loud**: Soft colors instead of neon gradients

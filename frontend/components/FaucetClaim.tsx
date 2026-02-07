@@ -8,6 +8,7 @@ import DuckMascot from './DuckMascot'
 export default function FaucetClaim() {
   const { address, isConnected } = useAccount()
   const [showTooltip, setShowTooltip] = useState(false)
+  const [timeRemaining, setTimeRemaining] = useState<number>(0)
 
   // Read token balance
   const { data: balance, refetch: refetchBalance } = useReadContract({
@@ -25,6 +26,17 @@ export default function FaucetClaim() {
     address: KITCHEN_TOKEN_ADDRESS,
     abi: KITCHEN_TOKEN_ABI,
     functionName: 'canClaimFaucet',
+    args: address ? [address] : undefined,
+    query: {
+      enabled: !!address
+    }
+  })
+
+  // Get last claim timestamp
+  const { data: lastClaim } = useReadContract({
+    address: KITCHEN_TOKEN_ADDRESS,
+    abi: KITCHEN_TOKEN_ABI,
+    functionName: 'lastFaucetClaim',
     args: address ? [address] : undefined,
     query: {
       enabled: !!address
@@ -67,6 +79,42 @@ export default function FaucetClaim() {
     })
   }
 
+  // Update countdown timer based on last claim timestamp
+  useEffect(() => {
+    if (!lastClaim || lastClaim === 0n) {
+      setTimeRemaining(0)
+      return
+    }
+
+    const calculateTimeRemaining = () => {
+      const currentTime = Math.floor(Date.now() / 1000)
+      const lastClaimTime = Number(lastClaim)
+      const cooldownPeriod = 24 * 60 * 60 // 24 hours in seconds
+      const nextClaimTime = lastClaimTime + cooldownPeriod
+      const remaining = Math.max(0, nextClaimTime - currentTime)
+      setTimeRemaining(remaining)
+      return remaining
+    }
+
+    // Initial calculation
+    const remaining = calculateTimeRemaining()
+
+    // Set up interval to update every second only if there's time remaining
+    let interval: NodeJS.Timeout | null = null
+    if (remaining > 0) {
+      interval = setInterval(() => {
+        const newRemaining = calculateTimeRemaining()
+        if (newRemaining === 0) {
+          clearInterval(interval!)
+        }
+      }, 1000)
+    }
+
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [lastClaim])
+
   // Refetch balance when transaction is confirmed
   useEffect(() => {
     if (isConfirmed) {
@@ -79,17 +127,19 @@ export default function FaucetClaim() {
     return (Number(amount) / 1e18).toFixed(0)
   }
 
-  const formatTimeRemaining = (seconds: bigint | undefined) => {
-    if (!seconds || seconds === 0n) return null
+  const formatCountdownTime = (totalSeconds: number) => {
+    if (totalSeconds <= 0) return null
 
-    const totalSeconds = Number(seconds)
     const hours = Math.floor(totalSeconds / 3600)
     const minutes = Math.floor((totalSeconds % 3600) / 60)
+    const seconds = totalSeconds % 60
 
-    if (hours > 0) {
-      return `${hours}h ${minutes}m`
-    }
-    return `${minutes}m`
+    // Format with leading zeros
+    const hoursStr = hours.toString().padStart(2, '0')
+    const minutesStr = minutes.toString().padStart(2, '0')
+    const secondsStr = seconds.toString().padStart(2, '0')
+
+    return `${hoursStr}:${minutesStr}:${secondsStr}`
   }
 
   if (!isConnected) {
@@ -157,7 +207,7 @@ export default function FaucetClaim() {
         <div className="text-center">
           <h3 className="text-xl font-bold text-gray-800 mb-3">🚰 Token Faucet</h3>
 
-          {canClaim ? (
+          {canClaim && timeRemaining === 0 ? (
             <div className="space-y-4">
               <p className="text-gray-600">
                 Claim your free {formatTokenAmount(faucetAmount)} KitchenTokens to start cooking!
@@ -175,7 +225,7 @@ export default function FaucetClaim() {
               <div className="bg-yellow-100 p-4 rounded-lg border border-yellow-300">
                 <p className="text-yellow-800 font-medium mb-1">⏱️ Cooldown Active</p>
                 <p className="text-yellow-700 text-sm">
-                  Next claim available in: {formatTimeRemaining(timeUntilNextClaim)}
+                  Next claim available in: {formatCountdownTime(timeRemaining)}
                 </p>
                 <p className="text-yellow-600 text-xs mt-2">
                   The faucet has a 24-hour cooldown to prevent spam

@@ -1,11 +1,11 @@
-# ChainSchool: On-Chain Kitchen
+# Trustless Academy: On-Chain Kitchen
 
 An interactive Web3 learning platform where beginners learn about different token standards (ERC-20, ERC-1155, ERC-721) through a cozy cooking experience.
 
 ## Project Structure
 
 ```
-chainschool/
+trustless-academy/
 ├── contracts/          # Foundry smart contracts
 │   ├── src/           # Solidity contracts
 │   ├── test/          # Contract tests

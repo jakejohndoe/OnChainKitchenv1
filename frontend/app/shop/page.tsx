@@ -16,7 +16,7 @@ export default function ShopPage() {
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <DuckMascot size="small" expression="happy" />
-              <h1 className="text-xl font-bold text-gray-800">ChainSchool</h1>
+              <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
             </Link>
           </div>
           <div className="flex items-center space-x-4">

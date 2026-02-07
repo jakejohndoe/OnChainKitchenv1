@@ -9,7 +9,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <DuckMascot size="small" expression="happy" />
-            <h1 className="text-xl font-bold text-gray-800">ChainSchool</h1>
+            <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
           </div>
           <nav className="flex items-center space-x-6">
             <Link href="/tutorials" className="text-gray-700 hover:text-blue-600 transition-colors">
@@ -27,7 +27,7 @@ export default function HomePage() {
         <div className="text-center mb-16">
           <DuckMascot size="xlarge" expression="excited" className="mx-auto mb-8" />
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Welcome to ChainSchool
+            Welcome to Trustless Academy
           </h1>
           <p className="text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
             Learn Web3 by doing. Master blockchain concepts through interactive, hands-on tutorials that make complex topics simple and fun.
@@ -112,7 +112,7 @@ export default function HomePage() {
       <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-gray-600">
-            © 2024 ChainSchool • Learn Web3 by Doing • Open Source Education
+            © 2024 Trustless Academy • Learn Web3 by Doing • Open Source Education
           </p>
         </div>
       </footer>

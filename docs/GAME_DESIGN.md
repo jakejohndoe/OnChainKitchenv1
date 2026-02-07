@@ -1,14 +1,14 @@
-# ChainSchool: On-Chain Kitchen - Game Design
+# Trustless Academy: On-Chain Kitchen - Game Design
 
 ## Overview
 
-On-Chain Kitchen is ChainSchool's first interactive Web3 tutorial. Users learn about different token standards (ERC-20, ERC-1155, ERC-721) through a cozy cooking experience on Sepolia testnet.
+On-Chain Kitchen is Trustless Academy's first interactive Web3 tutorial. Users learn about different token standards (ERC-20, ERC-1155, ERC-721) through a cozy cooking experience on Sepolia testnet.
 
 ## Tutorial Flow
 
 ### 1. Welcome Screen
 **Learning Goal:** Wallet connection and testnet setup
-- Introduce ChainSchool concept
+- Introduce Trustless Academy concept
 - Connect MetaMask wallet
 - Ensure user is on Sepolia testnet
 - Meet the duck mascot

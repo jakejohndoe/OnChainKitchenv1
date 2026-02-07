@@ -64,7 +64,7 @@ export default function TutorialsPage() {
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <DuckMascot size="small" expression="happy" />
-              <h1 className="text-xl font-bold text-gray-800">ChainSchool</h1>
+              <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
             </Link>
           </div>
           <nav className="flex items-center space-x-6">
@@ -155,7 +155,7 @@ export default function TutorialsPage() {
       <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-gray-600">
-            © 2024 ChainSchool • Learn Web3 by Doing • Open Source Education
+            © 2024 Trustless Academy • Learn Web3 by Doing • Open Source Education
           </p>
         </div>
       </footer>

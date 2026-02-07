@@ -61,7 +61,7 @@ contract Ingredients is ERC1155, Ownable {
     /// @notice Creates the Ingredients contract
     /// @param _owner The initial owner of the contract
     constructor(address _owner)
-        ERC1155("https://chainschool.com/ingredients/{id}")
+        ERC1155("https://trustlessacademy.com/ingredients/{id}")
         Ownable(_owner)
     {
         // Initialize base ingredients

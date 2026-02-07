@@ -228,7 +228,7 @@ contract DishNFTTest is Test {
     }
 
     function test_TokenNameAndSymbol() public {
-        assertEq(dishNFT.name(), "ChainSchool Dishes");
+        assertEq(dishNFT.name(), "Trustless Academy Dishes");
         assertEq(dishNFT.symbol(), "DISH");
     }
 
