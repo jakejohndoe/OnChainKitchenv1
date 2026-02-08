@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import DuckMascot from '../components/DuckMascot'
+import ParticleNetwork from '../components/ParticleNetwork'
 
 export default function HomePage() {
   return (
@@ -8,7 +9,7 @@ export default function HomePage() {
       <header className="w-full bg-slate-900/80 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
+            <img src="/logos/TA-Hero-Logo-White.png" alt="Trustless Academy" className="h-16 w-auto" />
             <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
           </div>
           <nav className="flex items-center space-x-6">
@@ -22,10 +23,17 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <img src="/logos/TA-Hero-Logo-Text.png" alt="Trustless Academy" className="mx-auto mb-8 h-80 w-auto" />
+      {/* Hero Section with Particle Network */}
+      <main className="relative">
+        {/* Particle Network Animation */}
+        <div className="absolute inset-0 h-screen overflow-hidden">
+          <ParticleNetwork />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-16">
+          <div className="text-center mb-16">
+            <img src="/logos/TA-Hero-Logo-Text-White.png" alt="Trustless Academy" className="mx-auto mb-8 h-96 w-auto" />
           <h1 className="text-5xl font-bold text-white mb-6">
             Welcome to Trustless Academy
           </h1>
@@ -39,8 +47,10 @@ export default function HomePage() {
             Browse Tutorials →
           </Link>
         </div>
+      </div>
 
-        {/* Features */}
+      {/* Features - Outside particle network */}
+      <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-colors">
             <div className="text-4xl mb-4">🎓</div>
@@ -166,6 +176,7 @@ export default function HomePage() {
             Join the Waitlist →
           </Link>
         </div>
+      </div>
       </main>
 
       {/* Footer */}
