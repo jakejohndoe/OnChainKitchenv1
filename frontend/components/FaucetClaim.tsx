@@ -81,7 +81,7 @@ export default function FaucetClaim() {
 
   // Update countdown timer based on last claim timestamp
   useEffect(() => {
-    if (!lastClaim || lastClaim === 0n) {
+    if (!lastClaim || lastClaim === BigInt(0)) {
       setTimeRemaining(0)
       return
     }
@@ -194,7 +194,7 @@ export default function FaucetClaim() {
         <div className="text-center">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Your KitchenToken Balance</h3>
           <div className="text-3xl font-bold text-blue-600 mb-2">
-            🪙 {formatTokenAmount(balance)} KITCHEN
+            🪙 {formatTokenAmount(balance as bigint | undefined)} KITCHEN
           </div>
           <p className="text-gray-600 text-sm">
             Use these tokens to buy ingredients for cooking!
@@ -210,7 +210,7 @@ export default function FaucetClaim() {
           {canClaim && timeRemaining === 0 ? (
             <div className="space-y-4">
               <p className="text-gray-600">
-                Claim your free {formatTokenAmount(faucetAmount)} KitchenTokens to start cooking!
+                Claim your free {formatTokenAmount(faucetAmount as bigint | undefined)} KitchenTokens to start cooking!
               </p>
               <button
                 onClick={handleClaim}

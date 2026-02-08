@@ -39,7 +39,7 @@ export default function ShopInterface() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 1n] : undefined,
+    args: address ? [address, BigInt(1)] : undefined,
     query: {
       enabled: !!address && !!INGREDIENTS_ADDRESS
     }
@@ -49,7 +49,7 @@ export default function ShopInterface() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 2n] : undefined,
+    args: address ? [address, BigInt(2)] : undefined,
     query: {
       enabled: !!address && !!INGREDIENTS_ADDRESS
     }
@@ -59,7 +59,7 @@ export default function ShopInterface() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 3n] : undefined,
+    args: address ? [address, BigInt(3)] : undefined,
     query: {
       enabled: !!address && !!INGREDIENTS_ADDRESS
     }
@@ -92,8 +92,8 @@ export default function ShopInterface() {
 
   const calculateTotalCost = () => {
     const totalItems = Object.values(quantities).reduce((sum, qty) => sum + (qty || 0), 0)
-    if (!pricePerIngredient) return 0n
-    return BigInt(totalItems) * pricePerIngredient
+    if (!pricePerIngredient) return BigInt(0)
+    return BigInt(totalItems) * (pricePerIngredient as bigint)
   }
 
   const getSelectedIngredients = () => {
@@ -153,10 +153,10 @@ export default function ShopInterface() {
 
   const getIngredientBalance = (ingredientId: number) => {
     switch (ingredientId) {
-      case 1: return eggBalance || 0n
-      case 2: return cheeseBalance || 0n
-      case 3: return baconBalance || 0n
-      default: return 0n
+      case 1: return (eggBalance as bigint) || BigInt(0)
+      case 2: return (cheeseBalance as bigint) || BigInt(0)
+      case 3: return (baconBalance as bigint) || BigInt(0)
+      default: return BigInt(0)
     }
   }
 
@@ -215,7 +215,7 @@ export default function ShopInterface() {
           <h3 className="text-lg font-semibold text-gray-800">Your Balances</h3>
           <div className="text-right">
             <div className="text-2xl font-bold text-green-600">
-              🪙 {formatTokenAmount(tokenBalance)} KITCHEN
+              🪙 {formatTokenAmount(tokenBalance as bigint | undefined)} KITCHEN
             </div>
             <p className="text-gray-600 text-sm">Available to spend</p>
           </div>
@@ -236,7 +236,7 @@ export default function ShopInterface() {
                 <h4 className="font-semibold text-gray-800 mb-1">{ingredient.name}</h4>
                 <p className="text-gray-600 text-sm mb-2">{ingredient.description}</p>
                 <div className="text-sm text-gray-500 mb-3">
-                  Price: {formatTokenAmount(pricePerIngredient)} KITCHEN
+                  Price: {formatTokenAmount(pricePerIngredient as bigint | undefined)} KITCHEN
                 </div>
                 <div className="text-sm text-green-600 mb-3">
                   You have: {Number(getIngredientBalance(ingredient.id))}
@@ -271,7 +271,7 @@ export default function ShopInterface() {
                 Total: {selectedCount} ingredient{selectedCount !== 1 ? 's' : ''}
               </span>
               <span className="font-bold text-green-800">
-                {formatTokenAmount(totalCost)} KITCHEN
+                {formatTokenAmount(totalCost as bigint | undefined)} KITCHEN
               </span>
             </div>
             <div className="flex gap-3">

@@ -27,7 +27,7 @@ export default function PantryInventory() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 1n] : undefined,
+    args: address ? [address, BigInt(1)] : undefined,
     query: {
       enabled: !!address && !!INGREDIENTS_ADDRESS
     }
@@ -37,7 +37,7 @@ export default function PantryInventory() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 2n] : undefined,
+    args: address ? [address, BigInt(2)] : undefined,
     query: {
       enabled: !!address && !!INGREDIENTS_ADDRESS
     }
@@ -47,7 +47,7 @@ export default function PantryInventory() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 3n] : undefined,
+    args: address ? [address, BigInt(3)] : undefined,
     query: {
       enabled: !!address && !!INGREDIENTS_ADDRESS
     }
@@ -55,15 +55,15 @@ export default function PantryInventory() {
 
   const getIngredientBalance = (ingredientId: number): bigint => {
     switch (ingredientId) {
-      case 1: return eggBalance || 0n
-      case 2: return cheeseBalance || 0n
-      case 3: return baconBalance || 0n
-      default: return 0n
+      case 1: return (eggBalance as bigint) || BigInt(0)
+      case 2: return (cheeseBalance as bigint) || BigInt(0)
+      case 3: return (baconBalance as bigint) || BigInt(0)
+      default: return BigInt(0)
     }
   }
 
   const getTotalIngredients = (): number => {
-    return Number(eggBalance || 0n) + Number(cheeseBalance || 0n) + Number(baconBalance || 0n)
+    return Number((eggBalance as bigint) || BigInt(0)) + Number((cheeseBalance as bigint) || BigInt(0)) + Number((baconBalance as bigint) || BigInt(0))
   }
 
   const hasAnyIngredients = getTotalIngredients() > 0

@@ -5,6 +5,12 @@ import { useAccount, useReadContract, useWriteContract, useWaitForTransactionRec
 import { DISH_NFT_ABI, DISH_NFT_ADDRESS, INGREDIENTS_ABI, INGREDIENTS_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
 
+interface Ingredient {
+  id: number
+  name: string
+  emoji: string
+}
+
 const INGREDIENTS: Ingredient[] = [
   { id: 1, name: 'Egg', emoji: '🥚' },
   { id: 2, name: 'Cheese', emoji: '🧀' },
@@ -45,7 +51,7 @@ export default function OvenInterface() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 1n] : undefined,
+    args: address ? [address, BigInt(1)] : undefined,
     query: { enabled: !!address && !!INGREDIENTS_ADDRESS }
   })
 
@@ -53,7 +59,7 @@ export default function OvenInterface() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 2n] : undefined,
+    args: address ? [address, BigInt(2)] : undefined,
     query: { enabled: !!address && !!INGREDIENTS_ADDRESS }
   })
 
@@ -61,7 +67,7 @@ export default function OvenInterface() {
     address: INGREDIENTS_ADDRESS,
     abi: INGREDIENTS_ABI,
     functionName: 'balanceOf',
-    args: address ? [address, 3n] : undefined,
+    args: address ? [address, BigInt(3)] : undefined,
     query: { enabled: !!address && !!INGREDIENTS_ADDRESS }
   })
 
@@ -85,10 +91,10 @@ export default function OvenInterface() {
 
   const getIngredientBalance = (ingredientId: number): bigint => {
     switch (ingredientId) {
-      case 1: return eggBalance || 0n
-      case 2: return cheeseBalance || 0n
-      case 3: return baconBalance || 0n
-      default: return 0n
+      case 1: return (eggBalance as bigint) || BigInt(0)
+      case 2: return (cheeseBalance as bigint) || BigInt(0)
+      case 3: return (baconBalance as bigint) || BigInt(0)
+      default: return BigInt(0)
     }
   }
 

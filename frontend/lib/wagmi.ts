@@ -24,23 +24,23 @@ const anvil = {
 
 // Determine which network to use based on environment variable
 const isAnvil = process.env.NEXT_PUBLIC_NETWORK === 'anvil'
-const chains = isAnvil ? [anvil] : [sepolia]
+const chains = isAnvil ? [anvil] as const : [sepolia] as const
 
 // Configure transports based on network
 const transports = isAnvil
   ? {
       [anvil.id]: http('http://127.0.0.1:8545'),
-    }
+    } as const
   : {
       [sepolia.id]: http(`https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`),
-    }
+    } as const
 
 export const config = createConfig({
   chains,
   connectors: [
     injected(),
   ],
-  transports,
+  transports: transports as any,
 })
 
 // Contract addresses (to be filled after deployment)
