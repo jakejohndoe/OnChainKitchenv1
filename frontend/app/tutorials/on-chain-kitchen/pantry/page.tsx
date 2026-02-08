@@ -41,6 +41,11 @@ export default function PantryPage() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             View your ingredient inventory! Each ingredient is an ERC-1155 token with its own balance.
           </p>
+          <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-700">
+              <strong>📍 What you'll learn:</strong> Understand ERC-1155 balance tracking and multi-token inventory management.
+            </p>
+          </div>
         </div>
 
 

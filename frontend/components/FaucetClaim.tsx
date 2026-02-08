@@ -207,7 +207,7 @@ export default function FaucetClaim() {
         <div className="text-center">
           <h3 className="text-xl font-bold text-gray-800 mb-3">🚰 Token Faucet</h3>
 
-          {canClaim && timeRemaining === 0 ? (
+          {timeRemaining === 0 ? (
             <div className="space-y-4">
               <p className="text-gray-600">
                 Claim your free {formatTokenAmount(faucetAmount as bigint | undefined)} KitchenTokens to start cooking!
@@ -225,7 +225,7 @@ export default function FaucetClaim() {
               <div className="bg-yellow-100 p-4 rounded-lg border border-yellow-300">
                 <p className="text-yellow-800 font-medium mb-1">⏱️ Cooldown Active</p>
                 <p className="text-yellow-700 text-sm">
-                  Next claim available in: {formatCountdownTime(timeRemaining)}
+                  Next claim available in: {formatCountdownTime(timeRemaining) || 'Loading...'}
                 </p>
                 <p className="text-yellow-600 text-xs mt-2">
                   The faucet has a 24-hour cooldown to prevent spam

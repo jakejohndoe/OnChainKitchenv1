@@ -11,6 +11,7 @@ const steps = [
   { id: 'pantry', title: 'Pantry', path: '/tutorials/on-chain-kitchen/pantry' },
   { id: 'oven', title: 'Oven', path: '/tutorials/on-chain-kitchen/oven' },
   { id: 'cookbook', title: 'Cookbook', path: '/tutorials/on-chain-kitchen/cookbook' },
+  { id: 'complete', title: 'Complete', path: '/tutorials/on-chain-kitchen/complete' },
 ]
 
 export default function OnChainKitchenLayout({
@@ -24,8 +25,8 @@ export default function OnChainKitchenLayout({
   const prevStep = currentStepIndex > 0 ? steps[currentStepIndex - 1] : null
   const nextStep = currentStepIndex < steps.length - 1 ? steps[currentStepIndex + 1] : null
 
-  // Don't show navigation on the intro page
-  const showNavigation = pathname !== '/tutorials/on-chain-kitchen'
+  // Don't show navigation on the intro page or complete page
+  const showNavigation = pathname !== '/tutorials/on-chain-kitchen' && pathname !== '/tutorials/on-chain-kitchen/complete'
 
   return (
     <div className="min-h-screen">

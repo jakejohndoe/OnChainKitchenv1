@@ -41,6 +41,11 @@ export default function ShopPage() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Buy ingredients with your KitchenTokens! Use batch transactions to save on gas costs.
           </p>
+          <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-700">
+              <strong>📍 What you'll learn:</strong> Experience ERC-1155 multi-tokens, approve/spend workflows, and batch transactions.
+            </p>
+          </div>
         </div>
 
 

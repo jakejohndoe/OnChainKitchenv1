@@ -14,22 +14,22 @@ interface Tutorial {
 
 const tutorials: Tutorial[] = [
   {
-    id: 'blockchain-basics',
+    id: 'what-is-blockchain',
     title: 'Lesson 1: What is Blockchain?',
     description: 'Understand the fundamental concepts of blockchain technology, distributed ledgers, and consensus mechanisms.',
     difficulty: 'Beginner',
     duration: '30 mins',
-    status: 'coming-soon',
+    status: 'available',
     icon: '⛓️',
-    topics: ['Blocks', 'Transactions', 'Mining', 'Consensus']
+    topics: ['Blocks', 'Transactions', 'Decentralization', 'Consensus']
   },
   {
-    id: 'ethereum-intro',
+    id: 'what-is-ethereum',
     title: 'Lesson 2: What is Ethereum?',
     description: 'Dive into Ethereum, smart contracts, gas fees, and how the Ethereum Virtual Machine works.',
     difficulty: 'Beginner',
     duration: '45 mins',
-    status: 'coming-soon',
+    status: 'available',
     icon: '💎',
     topics: ['Smart Contracts', 'Gas', 'EVM', 'Accounts']
   },
@@ -39,7 +39,7 @@ const tutorials: Tutorial[] = [
     description: 'Explore the most important token standards: ERC-20, ERC-721, and ERC-1155 with practical examples.',
     difficulty: 'Intermediate',
     duration: '1 hour',
-    status: 'coming-soon',
+    status: 'available',
     icon: '🪙',
     topics: ['ERC-20', 'ERC-721', 'ERC-1155', 'Token Economics']
   },
@@ -155,7 +155,7 @@ export default function TutorialsPage() {
       <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-gray-600">
-            © 2024 Trustless Academy • Learn Web3 by Doing • Open Source Education
+            © 2026 Trustless Academy • Learn Web3 by Doing • Open Source Education
           </p>
         </div>
       </footer>

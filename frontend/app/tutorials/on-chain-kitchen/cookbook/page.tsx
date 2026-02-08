@@ -41,6 +41,11 @@ export default function CookbookPage() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Browse your collection of NFT dishes! Each one is a unique ERC-721 token with its recipe stored on-chain.
           </p>
+          <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-700">
+              <strong>📍 What you'll learn:</strong> Understand ERC-721 NFTs, true digital ownership, and on-chain metadata.
+            </p>
+          </div>
         </div>
 
         {/* Main Cookbook Interface */}
@@ -48,30 +53,22 @@ export default function CookbookPage() {
           <div className="space-y-8">
             <CookbookGallery />
 
-            {/* Tutorial Complete */}
+            {/* Completion Call to Action */}
             <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl border border-green-200 text-center">
-              <div className="text-5xl mb-4">🎉</div>
+              <div className="text-4xl mb-4">👨‍🍳</div>
               <h3 className="text-2xl font-bold text-green-800 mb-3">
-                Congratulations! You've Completed the Tutorial!
+                Ready to Celebrate Your Success?
               </h3>
               <p className="text-green-700 mb-6 max-w-2xl mx-auto">
-                You've learned how to interact with ERC-20 tokens, manage ERC-1155 inventories,
-                and create ERC-721 NFTs. You're now ready to build your own Web3 applications!
+                You've mastered all three token standards and built an amazing collection of dishes!
+                Let's see everything you've accomplished in this tutorial.
               </p>
-              <div className="flex justify-center space-x-4">
-                <Link
-                  href="/tutorials/on-chain-kitchen"
-                  className="bg-green-200 text-green-800 px-6 py-2 rounded-lg hover:bg-green-300 transition-colors font-medium"
-                >
-                  ← Restart Tutorial
-                </Link>
-                <Link
-                  href="/tutorials"
-                  className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors font-medium"
-                >
-                  Browse More Tutorials →
-                </Link>
-              </div>
+              <Link
+                href="/tutorials/on-chain-kitchen/complete"
+                className="inline-flex items-center bg-green-500 text-white px-8 py-4 rounded-lg hover:bg-green-600 transition-colors font-medium text-lg shadow-lg"
+              >
+                🎉 Celebrate Your Achievement →
+              </Link>
             </div>
           </div>
         ) : (

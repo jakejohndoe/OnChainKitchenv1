@@ -41,6 +41,11 @@ export default function FaucetPage() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Welcome to your first Web3 interaction! Get free KitchenTokens to start your cooking journey.
           </p>
+          <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-700">
+              <strong>📍 What you'll learn:</strong> Experience ERC-20 tokens, faucet mechanics, and blockchain transactions.
+            </p>
+          </div>
         </div>
 
 

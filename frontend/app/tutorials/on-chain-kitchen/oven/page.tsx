@@ -41,6 +41,11 @@ export default function OvenPage() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Time to cook! Burn your ingredients to mint unique Dish NFTs with on-chain recipes.
           </p>
+          <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
+            <p className="text-sm text-gray-700">
+              <strong>📍 What you'll learn:</strong> Experience token burning, NFT minting, and deterministic on-chain metadata.
+            </p>
+          </div>
         </div>
 
         {/* Main Oven Interface */}
