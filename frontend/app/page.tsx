@@ -15,8 +15,8 @@ export default function HomePage() {
             <Link href="/tutorials" className="text-gray-700 hover:text-blue-600 transition-colors">
               Tutorials
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
-              About
+            <Link href="/waitlist" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all">
+              Join Waitlist
             </Link>
           </nav>
         </div>

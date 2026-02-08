@@ -29,6 +29,17 @@ Add these environment variables in the Vercel dashboard for production deploymen
   - Get your key at: https://www.alchemy.com/
   - Make sure it's enabled for Sepolia network
 
+### Supabase Configuration (for Waitlist)
+- **`NEXT_PUBLIC_SUPABASE_URL`** = `[YOUR_SUPABASE_PROJECT_URL]`
+  - Your Supabase project URL
+  - Required: Yes (for waitlist functionality)
+  - Get from your Supabase project settings
+
+- **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** = `[YOUR_SUPABASE_ANON_KEY]`
+  - Your Supabase anonymous/public key
+  - Required: Yes (for waitlist functionality)
+  - Get from your Supabase project settings → API
+
 ## How to Add in Vercel Dashboard
 
 1. Go to your project in Vercel

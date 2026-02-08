@@ -122,6 +122,20 @@
   - ABIs extracted from Foundry build artifacts as JSON arrays
   - contracts.ts updated to import from ./abis/ instead of ../../contracts/out/
 
+### Waitlist Page Added ✅
+
+- **Premium waitlist page at /waitlist** - Elevated design with modern aesthetics
+  - Animated gradient background with floating orbs
+  - Glassmorphism card for signup form
+  - Clean typography and professional branding
+  - No wallet connection required
+- **Supabase integration implemented** - Email collection with optional interest field
+  - Handles duplicate emails gracefully
+  - Success and error states
+  - Environment variables documented
+- **Database schema defined** - SUPABASE_SETUP.md with table structure
+- **Build tested and passing** - All TypeScript checks pass with new page
+
 ## Next 📋
 
 1. **Deploy to Vercel** - Push to GitHub and connect to Vercel dashboard
