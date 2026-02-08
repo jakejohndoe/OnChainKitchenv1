@@ -36,7 +36,7 @@ const tutorials: Tutorial[] = [
   {
     id: 'token-standards',
     title: 'Lesson 3: Token Standards Explained',
-    description: 'Master the most important token standards: ERC-20, ERC-721, and ERC-1155 with practical examples.',
+    description: 'Explore the most important token standards: ERC-20, ERC-721, and ERC-1155 with practical examples.',
     difficulty: 'Intermediate',
     duration: '1 hour',
     status: 'coming-soon',
@@ -46,12 +46,12 @@ const tutorials: Tutorial[] = [
   {
     id: 'on-chain-kitchen',
     title: 'Lesson 4: On-Chain Kitchen',
-    description: 'Learn by doing! Build a complete DApp with tokens, NFTs, and inventories through a fun cooking tutorial.',
+    description: 'Learn by doing! Experience tokens, NFTs, and inventories through a fun, interactive cooking tutorial.',
     difficulty: 'Beginner',
     duration: '2 hours',
     status: 'available',
     icon: '👨‍🍳',
-    topics: ['ERC-20 Faucet', 'ERC-1155 Shop', 'NFT Minting', 'DApp UI']
+    topics: ['ERC-20 Faucet', 'ERC-1155 Shop', 'NFT Minting', 'Interactive Experience']
   }
 ]
 
@@ -87,7 +87,7 @@ export default function TutorialsPage() {
             Web3 Learning Path
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Start from the basics and progress to building full DApps. Each lesson builds on the previous one, creating a complete learning journey.
+            Start from the basics and progress through interactive experiences. Each lesson builds on the previous one, creating a complete learning journey.
           </p>
         </div>
 
@@ -136,14 +136,14 @@ export default function TutorialsPage() {
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
               <div>
-                <h3 className="font-semibold text-gray-800">Master Token Standards</h3>
-                <p className="text-gray-600">Deep dive into ERC-20, ERC-721, and ERC-1155</p>
+                <h3 className="font-semibold text-gray-800">Explore Token Standards</h3>
+                <p className="text-gray-600">Understand ERC-20, ERC-721, and ERC-1155 tokens</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
               <div>
-                <h3 className="font-semibold text-gray-800">Build Your First DApp</h3>
+                <h3 className="font-semibold text-gray-800">Experience Web3 Hands-On</h3>
                 <p className="text-gray-600">Apply everything in the On-Chain Kitchen tutorial</p>
               </div>
             </div>

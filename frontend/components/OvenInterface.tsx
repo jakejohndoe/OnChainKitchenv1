@@ -192,7 +192,7 @@ export default function OvenInterface() {
             )}
           </div>
           <div>
-            <h4 className="font-semibold text-orange-800 mb-2">Learn About Token Burning & NFT Minting</h4>
+            <h4 className="font-semibold text-orange-800 mb-2">Understanding Token Burning & NFT Minting</h4>
             <p className="text-orange-700 text-sm">
               Cooking burns ERC-1155 ingredient tokens and mints a unique ERC-721 NFT dish with your recipe stored on-chain.
             </p>

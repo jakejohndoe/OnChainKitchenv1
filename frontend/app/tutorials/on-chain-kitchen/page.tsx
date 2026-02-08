@@ -49,14 +49,14 @@ export default function OnChainKitchenIntro() {
             Welcome to On-Chain Kitchen! 👨‍🍳
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Learn Web3 by cooking! Master ERC-20 tokens, ERC-1155 inventories, and ERC-721 NFTs
-            through an interactive tutorial that teaches by doing.
+            Learn Web3 by cooking! Experience ERC-20 tokens, ERC-1155 inventories, and ERC-721 NFTs
+            through an interactive tutorial where you click, explore, and understand — no coding required.
           </p>
         </div>
 
         {/* What You'll Build */}
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">🎯 What You'll Build</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">🎯 What You'll Experience</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
@@ -154,7 +154,7 @@ export default function OnChainKitchenIntro() {
               <h4 className="font-semibold text-amber-800 mb-2">Why Cooking?</h4>
               <p className="text-amber-700 text-sm">
                 Cooking is the perfect metaphor for blockchain concepts! Ingredients are like tokens,
-                recipes are like smart contracts, and dishes are like NFTs. By building this DApp,
+                recipes are like smart contracts, and dishes are like NFTs. Through this interactive experience,
                 you'll understand how real Web3 applications work - all while having fun!
               </p>
             </div>

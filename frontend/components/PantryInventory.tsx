@@ -106,7 +106,7 @@ export default function PantryInventory() {
             )}
           </div>
           <div>
-            <h4 className="font-semibold text-purple-800 mb-2">Learn About Multi-Token Inventories</h4>
+            <h4 className="font-semibold text-purple-800 mb-2">Understanding Multi-Token Inventories</h4>
             <p className="text-purple-700 text-sm">
               ERC-1155 allows one contract to manage multiple token types, unlike ERC-20 which handles only one token type per contract.
             </p>

@@ -30,7 +30,7 @@ export default function HomePage() {
             Welcome to Trustless Academy
           </h1>
           <p className="text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
-            Learn Web3 by doing. Master blockchain concepts through interactive, hands-on tutorials that make complex topics simple and fun.
+            Finally understand how blockchain actually works. Interactive experiences that let anyone explore Web3 concepts — no technical background needed.
           </p>
           <Link
             href="/tutorials"
@@ -46,7 +46,7 @@ export default function HomePage() {
             <div className="text-4xl mb-4">🎓</div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Learn by Doing</h3>
             <p className="text-gray-600">
-              No boring theory. Jump straight into building real blockchain applications with guided tutorials.
+              No boring theory. Experience real blockchain interactions through simple clicks and guided exploration.
             </p>
           </div>
           <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
@@ -60,7 +60,7 @@ export default function HomePage() {
             <div className="text-4xl mb-4">🔒</div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Safe Environment</h3>
             <p className="text-gray-600">
-              Practice on testnets with free tokens. Learn without risk before deploying to mainnet.
+              Practice on testnets with free tokens. Learn and explore without any financial risk.
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function HomePage() {
             <div className="bg-white p-6 rounded-xl">
               <div className="text-2xl mb-2">💎</div>
               <h4 className="font-semibold text-gray-800">Smart Contracts</h4>
-              <p className="text-sm text-gray-600 mt-2">Write and deploy Solidity contracts</p>
+              <p className="text-sm text-gray-600 mt-2">Understand how smart contracts work</p>
             </div>
             <div className="bg-white p-6 rounded-xl">
               <div className="text-2xl mb-2">🪙</div>
@@ -86,8 +86,8 @@ export default function HomePage() {
             </div>
             <div className="bg-white p-6 rounded-xl">
               <div className="text-2xl mb-2">🌐</div>
-              <h4 className="font-semibold text-gray-800">DApp Development</h4>
-              <p className="text-sm text-gray-600 mt-2">Build full-stack Web3 applications</p>
+              <h4 className="font-semibold text-gray-800">DApp Interaction</h4>
+              <p className="text-sm text-gray-600 mt-2">Experience using Web3 applications</p>
             </div>
           </div>
         </div>

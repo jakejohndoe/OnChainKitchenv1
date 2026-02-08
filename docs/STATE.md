@@ -124,10 +124,10 @@
 
 ### Waitlist Page Added ✅
 
-- **Premium waitlist page at /waitlist** - Elevated design with modern aesthetics
-  - Animated gradient background with floating orbs
-  - Glassmorphism card for signup form
-  - Clean typography and professional branding
+- **Waitlist page at /waitlist** - Warm, cozy design matching site aesthetic
+  - Same cream/warm background as other pages
+  - Clean white card with soft borders
+  - Duck mascot prominent role
   - No wallet connection required
 - **Supabase integration implemented** - Email collection with optional interest field
   - Handles duplicate emails gracefully
@@ -135,6 +135,20 @@
   - Environment variables documented
 - **Database schema defined** - SUPABASE_SETUP.md with table structure
 - **Build tested and passing** - All TypeScript checks pass with new page
+
+### Site-wide Messaging Updated ✅
+
+- **Repositioned as interactive learning experience** - Not a coding bootcamp
+  - Target audience: Curious people wanting to understand blockchain, not aspiring developers
+  - "Learn Web3 by doing, not memorizing" as core message
+  - No coding required messaging throughout
+- **Updated copy across all pages**:
+  - Waitlist: "Understand blockchain by using it, not reading about it", "No coding required. Just curiosity."
+  - Homepage: "Finally understand how blockchain actually works", "Interactive experiences"
+  - Tutorials: "Experience" instead of "Build", removed developer-focused language
+  - Components: "Understanding" instead of "Learn About" for educational sections
+- **Duck mascot positioned as friendly tour guide** - Not a programming instructor
+- **Tone is warm, accessible, no jargon** - Anyone can participate
 
 ## Next 📋
 

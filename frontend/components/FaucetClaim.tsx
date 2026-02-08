@@ -172,7 +172,7 @@ export default function FaucetClaim() {
             {showTooltip && (
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 bg-gray-800 text-white text-sm rounded-lg p-3 shadow-lg z-10">
                 <div className="text-center">
-                  <p className="font-medium mb-1">ERC-20 Deep Dive</p>
+                  <p className="font-medium mb-1">What are ERC-20 Tokens?</p>
                   <p className="text-xs">ERC-20 tokens are fungible, meaning each token is identical and interchangeable - just like traditional currency where every dollar has the same value!</p>
                 </div>
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
@@ -180,7 +180,7 @@ export default function FaucetClaim() {
             )}
           </div>
           <div>
-            <h4 className="font-semibold text-amber-800 mb-2">Learn About ERC-20 Tokens</h4>
+            <h4 className="font-semibold text-amber-800 mb-2">Understanding ERC-20 Tokens</h4>
             <p className="text-amber-700 text-sm">
               ERC-20 tokens are fungible digital assets where each token is identical and interchangeable,
               just like traditional currency.

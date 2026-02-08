@@ -201,7 +201,7 @@ export default function ShopInterface() {
             )}
           </div>
           <div>
-            <h4 className="font-semibold text-green-800 mb-2">Learn About Batch Transactions</h4>
+            <h4 className="font-semibold text-green-800 mb-2">Understanding Batch Transactions</h4>
             <p className="text-green-700 text-sm">
               Batch transactions let you buy multiple ingredients in one go, saving gas fees compared to individual purchases.
             </p>

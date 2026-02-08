@@ -74,7 +74,7 @@ export default function CookbookGallery() {
             )}
           </div>
           <div>
-            <h4 className="font-semibold text-purple-800 mb-2">Learn About NFT Ownership</h4>
+            <h4 className="font-semibold text-purple-800 mb-2">Understanding NFT Ownership</h4>
             <p className="text-purple-700 text-sm">
               ERC-721 NFTs are unique, non-fungible tokens. Each dish you create is one-of-a-kind with its recipe permanently stored on the blockchain.
             </p>

@@ -86,7 +86,7 @@ export default function WaitlistPage() {
             </div>
 
             <h2 className="text-5xl font-bold text-gray-900 mb-6">
-              Learn Web3 by building, not memorizing
+              Learn Web3 by doing, not memorizing
             </h2>
 
             {/* Bullet points */}
@@ -97,11 +97,11 @@ export default function WaitlistPage() {
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-amber-600 text-xl mt-1">•</span>
-                <p className="text-gray-700 text-lg">Build portfolio-ready projects step by step</p>
+                <p className="text-gray-700 text-lg">Understand blockchain by using it, not reading about it</p>
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-amber-600 text-xl mt-1">•</span>
-                <p className="text-gray-700 text-lg">From zero to deploying smart contracts</p>
+                <p className="text-gray-700 text-lg">No coding required. Just curiosity.</p>
               </div>
             </div>
           </div>
