@@ -101,6 +101,7 @@
 - **Last claim timestamp integration** - Reads lastFaucetClaim from KitchenToken contract
 - **Dynamic UI updates** - Button appears when countdown reaches zero
 - **Precise time calculation** - Updates every second until cooldown expires
+- **Fixed countdown display issue** - Countdown now properly shows based on timeRemaining state instead of canClaim hook
 
 ### Contracts Redeployed with New Branding ✅
 
