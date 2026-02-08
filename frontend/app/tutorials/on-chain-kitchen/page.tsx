@@ -24,7 +24,7 @@ export default function OnChainKitchenIntro() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-12 w-auto" />
+                <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
                 <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
               </Link>
               <span className="text-gray-400">/</span>

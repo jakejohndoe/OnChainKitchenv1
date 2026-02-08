@@ -64,7 +64,7 @@ export default function WaitlistPage() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-12 w-auto" />
+              <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
               <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
             </Link>
           </div>
@@ -82,7 +82,7 @@ export default function WaitlistPage() {
           {/* Headline with Duck */}
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-8">
-              <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-24 w-auto" />
+              <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-40 w-auto" />
             </div>
 
             <h2 className="text-5xl font-bold text-gray-900 mb-6">
