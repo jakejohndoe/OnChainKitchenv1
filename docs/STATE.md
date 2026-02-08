@@ -117,6 +117,10 @@
 - **No hardcoded localhost references** - All network-specific code controlled by environment variables
 - **vercel.json configured** - Basic configuration file created for Vercel deployment
 - **BigInt literals fixed** - All TypeScript compilation issues resolved for production build
+- **ABI imports fixed** - Contract ABIs copied to frontend/lib/abis/ for standalone deployment
+  - No dependency on ../contracts directory
+  - ABIs extracted from Foundry build artifacts as JSON arrays
+  - contracts.ts updated to import from ./abis/ instead of ../../contracts/out/
 
 ## Next 📋
 

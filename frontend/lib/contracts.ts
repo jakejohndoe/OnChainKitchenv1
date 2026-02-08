@@ -1,12 +1,12 @@
 // Contract ABIs and configuration
-import kitchenTokenAbi from '../../contracts/out/KitchenToken.sol/KitchenToken.json'
-import ingredientsAbi from '../../contracts/out/Ingredients.sol/Ingredients.json'
-import dishNFTAbi from '../../contracts/out/DishNFT.sol/DishNFT.json'
+import kitchenTokenAbi from './abis/KitchenToken.json'
+import ingredientsAbi from './abis/Ingredients.json'
+import dishNFTAbi from './abis/DishNFT.json'
 
-// Extract just the ABI from the JSON files
-export const KITCHEN_TOKEN_ABI = kitchenTokenAbi.abi
-export const INGREDIENTS_ABI = ingredientsAbi.abi
-export const DISH_NFT_ABI = dishNFTAbi.abi
+// ABIs are already extracted as arrays in the JSON files
+export const KITCHEN_TOKEN_ABI = kitchenTokenAbi
+export const INGREDIENTS_ABI = ingredientsAbi
+export const DISH_NFT_ABI = dishNFTAbi
 
 // Contract addresses from environment
 export const KITCHEN_TOKEN_ADDRESS = process.env.NEXT_PUBLIC_KITCHEN_TOKEN_ADDRESS as `0x${string}`
