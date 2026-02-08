@@ -295,7 +295,7 @@ export default function TokenStandards() {
                   <div className="text-3xl mb-2">🪙</div>
                   <div className="font-bold text-green-600">ERC-20</div>
                 </div>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-gray-700">
                   <div><strong>KitchenTokens</strong></div>
                   <div>• Currency for buying ingredients</div>
                   <div>• Claim from faucet</div>
@@ -308,7 +308,7 @@ export default function TokenStandards() {
                   <div className="text-3xl mb-2">🥕</div>
                   <div className="font-bold text-orange-600">ERC-1155</div>
                 </div>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-gray-700">
                   <div><strong>Ingredients</strong></div>
                   <div>• Multiple types in one contract</div>
                   <div>• Stack identical ingredients</div>
@@ -321,7 +321,7 @@ export default function TokenStandards() {
                   <div className="text-3xl mb-2">🍕</div>
                   <div className="font-bold text-purple-600">ERC-721</div>
                 </div>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-gray-700">
                   <div><strong>Dish NFTs</strong></div>
                   <div>• Unique recipes and artwork</div>
                   <div>• Generated based on ingredients</div>

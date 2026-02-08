@@ -55,6 +55,7 @@ export default function FaucetClaim() {
   })
 
   // Get faucet amount
+  // NOTE: If this returns 0, the contract needs to be redeployed with correct FAUCET_AMOUNT
   const { data: faucetAmount } = useReadContract({
     address: KITCHEN_TOKEN_ADDRESS,
     abi: KITCHEN_TOKEN_ABI,
@@ -123,7 +124,7 @@ export default function FaucetClaim() {
   }, [isConfirmed, refetchBalance])
 
   const formatTokenAmount = (amount: bigint | undefined) => {
-    if (!amount) return '0'
+    if (!amount && amount !== BigInt(0)) return '100' // Default to 100 tokens if undefined
     return (Number(amount) / 1e18).toFixed(0)
   }
 

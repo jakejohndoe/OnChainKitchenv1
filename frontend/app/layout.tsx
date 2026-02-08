@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/logos/TA-Hero-Favicon.png',
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
