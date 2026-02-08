@@ -1,14 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useReadContract } from 'wagmi'
 import { DISH_NFT_ABI, DISH_NFT_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
 
 interface DishNFT {
   tokenId: bigint
-  tokenURI: string
+  tokenURI?: string
   svgImage?: string
+  name?: string
+  description?: string
+  ingredients?: number[]
 }
 
 const INGREDIENTS = [
@@ -21,6 +24,7 @@ export default function CookbookGallery() {
   const { address, isConnected } = useAccount()
   const [selectedDish, setSelectedDish] = useState<DishNFT | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
+  const [dishes, setDishes] = useState<DishNFT[]>([])
 
   // Read the total number of NFTs owned by the user
   const { data: balance } = useReadContract({
@@ -31,10 +35,60 @@ export default function CookbookGallery() {
     query: { enabled: !!address && !!DISH_NFT_ADDRESS }
   })
 
-  // For now, we'll show dishes count and basic info
-  // In a full implementation, we'd iterate through tokenOfOwnerByIndex to get all token IDs
   const dishCount = balance ? Number(balance) : 0
   const hasDishes = dishCount > 0
+
+  // Read each token owned by the user
+  const tokenReads = Array.from({ length: dishCount }, (_, i) => ({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenOfOwnerByIndex',
+    args: [address, BigInt(i)],
+  }))
+
+  // Get token IDs
+  const { data: tokenId0 } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenOfOwnerByIndex',
+    args: dishCount > 0 && address ? [address, BigInt(0)] : undefined,
+    query: { enabled: dishCount > 0 && !!address && !!DISH_NFT_ADDRESS }
+  })
+
+  // Get tokenURI for first token (we'll expand this for multiple tokens)
+  const { data: tokenURI0 } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenURI',
+    args: tokenId0 ? [tokenId0] : undefined,
+    query: { enabled: !!tokenId0 && !!DISH_NFT_ADDRESS }
+  })
+
+  // Parse the tokenURI to extract SVG and metadata
+  useEffect(() => {
+    if (tokenURI0 && tokenId0) {
+      try {
+        // TokenURI is in format: data:application/json;base64,{encoded_json}
+        const base64Data = (tokenURI0 as string).split(',')[1]
+        const jsonData = JSON.parse(atob(base64Data))
+
+        // Extract SVG from the image field
+        const svgData = jsonData.image?.split(',')[1]
+        const svgImage = svgData ? atob(svgData) : undefined
+
+        setDishes([{
+          tokenId: tokenId0 as bigint,
+          tokenURI: tokenURI0 as string,
+          svgImage,
+          name: jsonData.name,
+          description: jsonData.description,
+          ingredients: jsonData.attributes?.find((attr: any) => attr.trait_type === 'Ingredients')?.value
+        }])
+      } catch (error) {
+        console.error('Error parsing token URI:', error)
+      }
+    }
+  }, [tokenURI0, tokenId0])
 
   if (!isConnected) {
     return (
@@ -99,6 +153,16 @@ export default function CookbookGallery() {
             </div>
           </div>
         </div>
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <a
+            href={`https://sepolia.etherscan.io/token/${DISH_NFT_ADDRESS}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-blue-600 hover:text-blue-700 underline"
+          >
+            View Collection on Etherscan →
+          </a>
+        </div>
       </div>
 
       {/* NFT Gallery */}
@@ -106,21 +170,45 @@ export default function CookbookGallery() {
         <h3 className="text-xl font-bold text-gray-800 mb-6">🖼️ Your Dish Collection</h3>
 
         {hasDishes ? (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🍽️✨</div>
-            <h4 className="text-xl font-semibold text-gray-800 mb-3">You Have {dishCount} Dish NFTs!</h4>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
-              Your dishes are stored on the blockchain as unique NFTs. Each one has its recipe permanently recorded on-chain.
-            </p>
-            <div className="bg-purple-50 p-6 rounded-lg max-w-md mx-auto">
-              <h5 className="font-semibold text-purple-800 mb-2">🔗 On-Chain Features</h5>
-              <ul className="text-sm text-purple-700 space-y-1 text-left">
-                <li>✅ Unique token IDs for each dish</li>
-                <li>✅ Recipe ingredients stored permanently</li>
-                <li>✅ SVG images generated on-chain</li>
-                <li>✅ Full ERC-721 compatibility</li>
-              </ul>
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {dishes.map((dish) => (
+                <div key={dish.tokenId.toString()} className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                  {dish.svgImage ? (
+                    <div
+                      className="w-full h-48 mb-3 rounded overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center"
+                      dangerouslySetInnerHTML={{ __html: dish.svgImage }}
+                    />
+                  ) : (
+                    <div className="w-full h-48 mb-3 rounded bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                      <div className="text-6xl">🍽️</div>
+                    </div>
+                  )}
+                  <h4 className="font-semibold text-gray-800 mb-1">
+                    {dish.name || `Dish #${dish.tokenId}`}
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-3">
+                    {dish.description || 'A delicious creation from the On-Chain Kitchen'}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-500">Token ID: {dish.tokenId.toString()}</span>
+                    <a
+                      href={`https://sepolia.etherscan.io/token/${DISH_NFT_ADDRESS}?a=${dish.tokenId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-blue-600 hover:text-blue-700 underline"
+                    >
+                      View on Etherscan
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
+            {dishes.length === 0 && dishCount > 0 && (
+              <div className="text-center py-8">
+                <p className="text-gray-600">Loading your dishes...</p>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-12">

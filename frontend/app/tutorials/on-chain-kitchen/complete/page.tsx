@@ -9,7 +9,7 @@ export default function CompletePage() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <DuckMascot size="small" expression="happy" />
+              <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-12 w-auto" />
               <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
             </Link>
           </div>

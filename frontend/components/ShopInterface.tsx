@@ -22,6 +22,7 @@ export default function ShopInterface() {
   const { address, isConnected } = useAccount()
   const [quantities, setQuantities] = useState<Record<number, number>>({})
   const [showTooltip, setShowTooltip] = useState(false)
+  const [isApproved, setIsApproved] = useState(false)
 
   // Read token balance
   const { data: tokenBalance, refetch: refetchTokenBalance } = useReadContract({
@@ -80,7 +81,7 @@ export default function ShopInterface() {
   const { writeContract: buyIngredients, isPending, error, data: buyHash } = useWriteContract()
 
   // Wait for transaction receipts
-  const { isLoading: isApprovePending } = useWaitForTransactionReceipt({ hash: approveHash })
+  const { isLoading: isApprovePending, isSuccess: isApproveSuccess } = useWaitForTransactionReceipt({ hash: approveHash })
   const { isLoading: isBuyPending, isSuccess: isBuySuccess } = useWaitForTransactionReceipt({ hash: buyHash })
 
   const handleQuantityChange = (ingredientId: number, quantity: number) => {
@@ -136,6 +137,13 @@ export default function ShopInterface() {
     })
   }
 
+  // Handle approval success
+  useEffect(() => {
+    if (isApproveSuccess) {
+      setIsApproved(true)
+    }
+  }, [isApproveSuccess])
+
   // Refetch balances when transaction is successful
   useEffect(() => {
     if (isBuySuccess) {
@@ -143,6 +151,14 @@ export default function ShopInterface() {
       refetchEggBalance()
       refetchCheeseBalance()
       refetchBaconBalance()
+      // Reset cart after successful purchase
+      setQuantities({})
+      setIsApproved(false)
+      // Scroll to success message
+      const successElement = document.getElementById('success-message')
+      if (successElement) {
+        successElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
     }
   }, [isBuySuccess, refetchTokenBalance, refetchEggBalance, refetchCheeseBalance, refetchBaconBalance])
 
@@ -238,8 +254,11 @@ export default function ShopInterface() {
                 <div className="text-sm text-gray-500 mb-3">
                   Price: {formatTokenAmount(pricePerIngredient as bigint | undefined)} KITCHEN
                 </div>
-                <div className="text-sm text-green-600 mb-3">
-                  You have: {Number(getIngredientBalance(ingredient.id))}
+                <div className="text-sm mb-3">
+                  <span className="text-green-600">You have: {Number(getIngredientBalance(ingredient.id))}</span>
+                  {quantities[ingredient.id] > 0 && (
+                    <span className="text-blue-600 ml-2">| In cart: {quantities[ingredient.id]}</span>
+                  )}
                 </div>
                 <div className="flex items-center justify-center space-x-2">
                   <button
@@ -274,18 +293,29 @@ export default function ShopInterface() {
                 {formatTokenAmount(totalCost as bigint | undefined)} KITCHEN
               </span>
             </div>
+            <p className="text-sm text-gray-600 mb-3">
+              <strong>Step 1:</strong> Approve tokens for spending. <strong>Step 2:</strong> Buy your ingredients.
+            </p>
             <div className="flex gap-3">
               <button
                 onClick={handleApprove}
-                disabled={isApprovePending || isPending || isBuyPending}
-                className="flex-1 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isApprovePending || isPending || isBuyPending || isApproved}
+                className={`flex-1 py-2 rounded-lg transition-all font-medium disabled:cursor-not-allowed ${
+                  isApproved
+                    ? 'bg-green-100 text-green-800 border-2 border-green-500'
+                    : 'bg-green-500 text-white hover:bg-green-600 disabled:opacity-50'
+                }`}
               >
-                {isApprovePending ? 'Approving...' : '1. Approve Tokens'}
+                {isApprovePending ? 'Approving...' : isApproved ? 'Approved ✓' : '1. Approve Tokens'}
               </button>
               <button
                 onClick={handleBuy}
-                disabled={isPending || isBuyPending || !approveHash}
-                className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isPending || isBuyPending || !isApproved || isApprovePending}
+                className={`flex-1 py-2 rounded-lg transition-all font-medium disabled:cursor-not-allowed ${
+                  isApproved && !isPending && !isBuyPending
+                    ? 'bg-green-600 text-white hover:bg-green-700 animate-pulse'
+                    : 'bg-gray-400 text-white disabled:opacity-50'
+                }`}
               >
                 {isPending || isBuyPending ? 'Buying...' : '2. Buy Ingredients'}
               </button>
@@ -307,8 +337,13 @@ export default function ShopInterface() {
         )}
 
         {isBuySuccess && (
-          <div className="mt-4 bg-green-100 p-3 rounded-lg">
-            <p className="text-green-800 text-sm">✅ Ingredients purchased successfully!</p>
+          <div id="success-message" className="mt-4 bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-lg border-2 border-green-300">
+            <p className="text-green-800 text-xl font-bold text-center">
+              🎉✨ Ingredients purchased successfully! ✨🎉
+            </p>
+            <p className="text-green-700 text-center mt-2">
+              Check your pantry to see your new ingredients!
+            </p>
           </div>
         )}
 
