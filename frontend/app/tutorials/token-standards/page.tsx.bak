@@ -22,19 +22,19 @@ export default function TokenStandards() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Token Standards Explained</h1>
-          <p className="text-lg text-gray-400">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Token Standards Explained</h1>
+          <p className="text-lg text-gray-600">
             The blueprints that power everything from currencies to collectibles!
           </p>
         </div>
 
         {/* Duck Introduction */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-start space-x-4">
             <DuckMascot size="large" expression="curious" />
             <div className="flex-1">
               <div className="bg-green-100 rounded-xl p-4">
-                <p className="text-gray-300">
+                <p className="text-gray-700">
                   <strong>Ready for the final piece? 🦆</strong> You've learned about blockchain and Ethereum.
                   Now let's discover token standards — the rules that tell smart contracts how to create
                   different types of digital assets. This is where it all comes together!
@@ -45,10 +45,10 @@ export default function TokenStandards() {
         </div>
 
         {/* What Are Standards */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-6">📐 What Are Token Standards?</h2>
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">📐 What Are Token Standards?</h2>
 
-          <div className="space-y-4 text-gray-300">
+          <div className="space-y-4 text-gray-700">
             <p>
               Token standards are like blueprints or templates that tell smart contracts how to behave.
               Think of them as instruction manuals!
@@ -56,17 +56,17 @@ export default function TokenStandards() {
 
             <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 my-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-800 rounded-lg p-4 text-center">
+                <div className="bg-white rounded-lg p-4 text-center">
                   <div className="text-3xl mb-2">🏗️</div>
                   <div className="font-semibold mb-1">Building a House</div>
                   <div className="text-sm">You need blueprints</div>
                 </div>
-                <div className="bg-slate-800 rounded-lg p-4 text-center">
+                <div className="bg-white rounded-lg p-4 text-center">
                   <div className="text-3xl mb-2">🍰</div>
                   <div className="font-semibold mb-1">Baking a Cake</div>
                   <div className="text-sm">You need a recipe</div>
                 </div>
-                <div className="bg-slate-800 rounded-lg p-4 text-center">
+                <div className="bg-white rounded-lg p-4 text-center">
                   <div className="text-3xl mb-2">🪙</div>
                   <div className="font-semibold mb-1">Creating Tokens</div>
                   <div className="text-sm">You need standards</div>
@@ -82,23 +82,23 @@ export default function TokenStandards() {
         </div>
 
         {/* ERC-20 */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-6">💵 ERC-20: Digital Dollars</h2>
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">💵 ERC-20: Digital Dollars</h2>
 
-          <div className="space-y-4 text-gray-300">
+          <div className="space-y-4 text-gray-700">
             <p>
               <strong>ERC-20 tokens are fungible</strong> — meaning each token is identical and interchangeable,
               just like regular money!
             </p>
 
             {/* Dollar Analogy */}
-            <div className="bg-green-900/20 rounded-xl p-6 my-6">
+            <div className="bg-green-50 rounded-xl p-6 my-6">
               <div className="text-center mb-4">
                 <div className="text-4xl mb-2">💵</div>
                 <div className="font-bold text-lg">Think: Dollar Bills</div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-slate-800 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <div className="font-semibold mb-2">Real Dollars:</div>
                   <ul className="text-sm space-y-1">
                     <li>• Every $1 bill has same value</li>
@@ -107,7 +107,7 @@ export default function TokenStandards() {
                     <li>• Can be sent to anyone</li>
                   </ul>
                 </div>
-                <div className="bg-slate-800 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <div className="font-semibold mb-2">ERC-20 Tokens:</div>
                   <ul className="text-sm space-y-1">
                     <li>• Every token has same value</li>
@@ -119,7 +119,7 @@ export default function TokenStandards() {
               </div>
             </div>
 
-            <div className="bg-yellow-100 rounded-xl p-4">
+            <div className="bg-yellow-50 rounded-xl p-4">
               <p className="text-sm">
                 <strong>🦆 Examples you might know:</strong> USDC (digital dollars), DAI (stable currency),
                 UNI (Uniswap governance), and yes — the KitchenTokens in our tutorial are ERC-20 tokens!
@@ -129,23 +129,23 @@ export default function TokenStandards() {
         </div>
 
         {/* ERC-721 */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-6">🎨 ERC-721: Unique Trading Cards</h2>
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">🎨 ERC-721: Unique Trading Cards</h2>
 
-          <div className="space-y-4 text-gray-300">
+          <div className="space-y-4 text-gray-700">
             <p>
               <strong>ERC-721 tokens are non-fungible (NFTs)</strong> — meaning each token is unique and special,
               just like trading cards or artwork!
             </p>
 
             {/* Trading Card Analogy */}
-            <div className="bg-purple-900/20 rounded-xl p-6 my-6">
+            <div className="bg-purple-50 rounded-xl p-6 my-6">
               <div className="text-center mb-4">
                 <div className="text-4xl mb-2">🃏</div>
                 <div className="font-bold text-lg">Think: Trading Cards</div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-slate-800 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <div className="font-semibold mb-2">Trading Cards:</div>
                   <ul className="text-sm space-y-1">
                     <li>• Each card is unique</li>
@@ -155,7 +155,7 @@ export default function TokenStandards() {
                     <li>• You own the specific card</li>
                   </ul>
                 </div>
-                <div className="bg-slate-800 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <div className="font-semibold mb-2">ERC-721 NFTs:</div>
                   <ul className="text-sm space-y-1">
                     <li>• Each token is unique</li>
@@ -168,7 +168,7 @@ export default function TokenStandards() {
               </div>
             </div>
 
-            <div className="bg-yellow-100 rounded-xl p-4">
+            <div className="bg-yellow-50 rounded-xl p-4">
               <p className="text-sm">
                 <strong>🦆 Examples:</strong> CryptoKitties (digital cats), Bored Apes (profile pictures),
                 digital art, virtual real estate, and the Dish NFTs you create in our Kitchen tutorial!
@@ -178,10 +178,10 @@ export default function TokenStandards() {
         </div>
 
         {/* ERC-1155 */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-6">🎒 ERC-1155: The Ultimate Backpack</h2>
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">🎒 ERC-1155: The Ultimate Backpack</h2>
 
-          <div className="space-y-4 text-gray-300">
+          <div className="space-y-4 text-gray-700">
             <p>
               <strong>ERC-1155 tokens are multi-tokens</strong> — one contract can manage many different types
               of tokens, both fungible and non-fungible!
@@ -194,7 +194,7 @@ export default function TokenStandards() {
                 <div className="font-bold text-lg">Think: Gaming Inventory</div>
               </div>
               <div className="space-y-4">
-                <div className="bg-slate-800 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <div className="font-semibold mb-3">Your Game Backpack Contains:</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-sm">
                     <div className="bg-blue-100 rounded p-2">
@@ -232,7 +232,7 @@ export default function TokenStandards() {
               types of tokens in one place!
             </p>
 
-            <div className="bg-yellow-100 rounded-xl p-4">
+            <div className="bg-yellow-50 rounded-xl p-4">
               <p className="text-sm">
                 <strong>🦆 In our Kitchen:</strong> The Ingredients contract uses ERC-1155!
                 It manages multiple ingredient types (tomato, cheese, meat) — you can own many of each type,
@@ -243,8 +243,8 @@ export default function TokenStandards() {
         </div>
 
         {/* Comparison Chart */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-6">📊 Quick Comparison</h2>
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">📊 Quick Comparison</h2>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -256,14 +256,14 @@ export default function TokenStandards() {
                   <th className="text-left p-3 font-semibold">Best For</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-300">
-                <tr className="border-b bg-green-900/20">
+              <tbody className="text-gray-700">
+                <tr className="border-b bg-green-50">
                   <td className="p-3 font-medium">ERC-20</td>
                   <td className="p-3">💵 Dollar bills</td>
                   <td className="p-3">Identical value</td>
                   <td className="p-3">Currencies, governance tokens</td>
                 </tr>
-                <tr className="border-b bg-purple-900/20">
+                <tr className="border-b bg-purple-50">
                   <td className="p-3 font-medium">ERC-721</td>
                   <td className="p-3">🃏 Trading cards</td>
                   <td className="p-3">Unique & different</td>
@@ -282,20 +282,20 @@ export default function TokenStandards() {
 
         {/* Why This Matters for On-Chain Kitchen */}
         <div className="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-white mb-6">🍳 How On-Chain Kitchen Uses All Three!</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">🍳 How On-Chain Kitchen Uses All Three!</h2>
 
           <div className="space-y-6">
-            <p className="text-gray-300 font-medium">
+            <p className="text-gray-700 font-medium">
               Our cooking tutorial demonstrates all three token standards working together:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-slate-800 rounded-lg p-6">
+              <div className="bg-white rounded-lg p-6">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🪙</div>
                   <div className="font-bold text-green-600">ERC-20</div>
                 </div>
-                <div className="space-y-2 text-sm text-gray-300">
+                <div className="space-y-2 text-sm text-gray-700">
                   <div><strong>KitchenTokens</strong></div>
                   <div>• Currency for buying ingredients</div>
                   <div>• Claim from faucet</div>
@@ -303,12 +303,12 @@ export default function TokenStandards() {
                 </div>
               </div>
 
-              <div className="bg-slate-800 rounded-lg p-6">
+              <div className="bg-white rounded-lg p-6">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🥕</div>
                   <div className="font-bold text-orange-600">ERC-1155</div>
                 </div>
-                <div className="space-y-2 text-sm text-gray-300">
+                <div className="space-y-2 text-sm text-gray-700">
                   <div><strong>Ingredients</strong></div>
                   <div>• Multiple types in one contract</div>
                   <div>• Stack identical ingredients</div>
@@ -316,12 +316,12 @@ export default function TokenStandards() {
                 </div>
               </div>
 
-              <div className="bg-slate-800 rounded-lg p-6">
+              <div className="bg-white rounded-lg p-6">
                 <div className="text-center mb-4">
                   <div className="text-3xl mb-2">🍕</div>
                   <div className="font-bold text-purple-600">ERC-721</div>
                 </div>
-                <div className="space-y-2 text-sm text-gray-300">
+                <div className="space-y-2 text-sm text-gray-700">
                   <div><strong>Dish NFTs</strong></div>
                   <div>• Unique recipes and artwork</div>
                   <div>• Generated based on ingredients</div>
@@ -330,8 +330,8 @@ export default function TokenStandards() {
               </div>
             </div>
 
-            <div className="bg-slate-800 rounded-lg p-4 mt-6">
-              <p className="text-center text-gray-300">
+            <div className="bg-white rounded-lg p-4 mt-6">
+              <p className="text-center text-gray-700">
                 <strong>The Journey:</strong> Claim tokens (ERC-20) → Buy ingredients (ERC-1155) → Cook dishes (ERC-721)
               </p>
             </div>
@@ -339,12 +339,12 @@ export default function TokenStandards() {
         </div>
 
         {/* Duck Summary */}
-        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-start space-x-4">
             <DuckMascot size="medium" expression="excited" />
             <div className="flex-1">
               <div className="bg-green-100 rounded-xl p-4">
-                <p className="text-gray-300">
+                <p className="text-gray-700">
                   <strong>🦆 You did it!</strong> You now understand the three main token standards:
                   ERC-20 (fungible like money), ERC-721 (unique like trading cards), and ERC-1155 (multi-token like game inventories).
                   These are the building blocks of the entire Web3 ecosystem!
@@ -357,8 +357,8 @@ export default function TokenStandards() {
         {/* Final CTA */}
         <div className="bg-gradient-to-r from-green-100 to-teal-100 rounded-2xl shadow-lg p-8">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Experience It All? 🎉</h3>
-            <p className="text-gray-300 mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Experience It All? 🎉</h3>
+            <p className="text-gray-700 mb-6">
               Now that you understand the theory, let's see these token standards in action!
               Experience blockchain by using it in our interactive On-Chain Kitchen.
             </p>

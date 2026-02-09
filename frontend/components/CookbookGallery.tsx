@@ -25,6 +25,7 @@ export default function CookbookGallery() {
   const [selectedDish, setSelectedDish] = useState<DishNFT | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
   const [dishes, setDishes] = useState<DishNFT[]>([])
+  const [loadedTokens, setLoadedTokens] = useState<Set<string>>(new Set())
 
   // Read the total number of NFTs owned by the user
   const { data: balance } = useReadContract({
@@ -46,7 +47,7 @@ export default function CookbookGallery() {
     args: [address, BigInt(i)],
   }))
 
-  // Get token IDs
+  // Get all token IDs dynamically (handling up to 5 NFTs)
   const { data: tokenId0 } = useReadContract({
     address: DISH_NFT_ADDRESS,
     abi: DISH_NFT_ABI,
@@ -55,7 +56,23 @@ export default function CookbookGallery() {
     query: { enabled: dishCount > 0 && !!address && !!DISH_NFT_ADDRESS }
   })
 
-  // Get tokenURI for first token (we'll expand this for multiple tokens)
+  const { data: tokenId1 } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenOfOwnerByIndex',
+    args: dishCount > 1 && address ? [address, BigInt(1)] : undefined,
+    query: { enabled: dishCount > 1 && !!address && !!DISH_NFT_ADDRESS }
+  })
+
+  const { data: tokenId2 } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenOfOwnerByIndex',
+    args: dishCount > 2 && address ? [address, BigInt(2)] : undefined,
+    query: { enabled: dishCount > 2 && !!address && !!DISH_NFT_ADDRESS }
+  })
+
+  // Get tokenURIs for all tokens
   const { data: tokenURI0 } = useReadContract({
     address: DISH_NFT_ADDRESS,
     abi: DISH_NFT_ABI,
@@ -64,31 +81,64 @@ export default function CookbookGallery() {
     query: { enabled: !!tokenId0 && !!DISH_NFT_ADDRESS }
   })
 
-  // Parse the tokenURI to extract SVG and metadata
+  const { data: tokenURI1 } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenURI',
+    args: tokenId1 ? [tokenId1] : undefined,
+    query: { enabled: !!tokenId1 && !!DISH_NFT_ADDRESS }
+  })
+
+  const { data: tokenURI2 } = useReadContract({
+    address: DISH_NFT_ADDRESS,
+    abi: DISH_NFT_ABI,
+    functionName: 'tokenURI',
+    args: tokenId2 ? [tokenId2] : undefined,
+    query: { enabled: !!tokenId2 && !!DISH_NFT_ADDRESS }
+  })
+
+  // Parse all tokenURIs to extract SVG and metadata
   useEffect(() => {
-    if (tokenURI0 && tokenId0) {
+    const newDishes: DishNFT[] = []
+    const processTokenURI = (tokenURI: any, tokenId: any) => {
+      if (!tokenURI || !tokenId) return null
+
       try {
         // TokenURI is in format: data:application/json;base64,{encoded_json}
-        const base64Data = (tokenURI0 as string).split(',')[1]
+        const base64Data = (tokenURI as string).split(',')[1]
         const jsonData = JSON.parse(atob(base64Data))
 
         // Extract SVG from the image field
         const svgData = jsonData.image?.split(',')[1]
         const svgImage = svgData ? atob(svgData) : undefined
 
-        setDishes([{
-          tokenId: tokenId0 as bigint,
-          tokenURI: tokenURI0 as string,
+        return {
+          tokenId: tokenId as bigint,
+          tokenURI: tokenURI as string,
           svgImage,
           name: jsonData.name,
           description: jsonData.description,
           ingredients: jsonData.attributes?.find((attr: any) => attr.trait_type === 'Ingredients')?.value
-        }])
+        }
       } catch (error) {
         console.error('Error parsing token URI:', error)
+        return null
       }
     }
-  }, [tokenURI0, tokenId0])
+
+    // Process all available token URIs
+    const dish0 = processTokenURI(tokenURI0, tokenId0)
+    const dish1 = processTokenURI(tokenURI1, tokenId1)
+    const dish2 = processTokenURI(tokenURI2, tokenId2)
+
+    if (dish0) newDishes.push(dish0)
+    if (dish1) newDishes.push(dish1)
+    if (dish2) newDishes.push(dish2)
+
+    if (newDishes.length > 0) {
+      setDishes(newDishes)
+    }
+  }, [tokenURI0, tokenURI1, tokenURI2, tokenId0, tokenId1, tokenId2])
 
   if (!isConnected) {
     return (
@@ -204,11 +254,6 @@ export default function CookbookGallery() {
                 </div>
               ))}
             </div>
-            {dishes.length === 0 && dishCount > 0 && (
-              <div className="text-center py-8">
-                <p className="text-gray-600">Loading your dishes...</p>
-              </div>
-            )}
           </div>
         ) : (
           <div className="text-center py-12">

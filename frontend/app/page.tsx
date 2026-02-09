@@ -98,7 +98,7 @@ export default function HomePage() {
             <Link href="/tutorials/token-standards" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 transition-all group">
               <div className="text-3xl mb-3">🪙</div>
               <h4 className="font-semibold text-white group-hover:text-purple-400 transition-colors">Token Standards</h4>
-              <p className="text-sm text-gray-400 mt-2">Master ERC-20, ERC-721, and ERC-1155</p>
+              <p className="text-sm text-gray-400 mt-2">Explore ERC-20, ERC-721, and ERC-1155</p>
               <div className="text-purple-400 text-sm mt-3 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                 Start Reading →
               </div>

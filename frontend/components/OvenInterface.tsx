@@ -153,6 +153,8 @@ export default function OvenInterface() {
   }
 
   const hasSelectedIngredients = Object.keys(selectedIngredients).length > 0
+  const totalIngredientCount = Object.values(selectedIngredients).reduce((sum, count) => sum + count, 0)
+  const hasMinimumIngredients = totalIngredientCount >= 2
 
   if (!isConnected) {
     return (
@@ -275,11 +277,16 @@ export default function OvenInterface() {
         <div className="mt-6 text-center">
           <button
             onClick={handleCook}
-            disabled={!hasSelectedIngredients || isPending || isCookConfirming}
+            disabled={!hasMinimumIngredients || isPending || isCookConfirming}
             className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
           >
             {isPending || isCookConfirming ? '🔥 Cooking...' : '👨‍🍳 Start Cooking!'}
           </button>
+          {hasSelectedIngredients && !hasMinimumIngredients && (
+            <p className="text-red-600 text-sm mt-2">
+              Select at least 2 ingredients to cook a dish
+            </p>
+          )}
         </div>
 
         {/* Transaction Status */}

@@ -57,21 +57,21 @@ const tutorials: Tutorial[] = [
 
 export default function TutorialsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
-      <header className="w-full bg-white/80 backdrop-blur-sm border-b border-indigo-200 sticky top-0 z-10">
+      <header className="w-full bg-slate-900/80 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
-              <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
+              <img src="/logos/TA-Hero-Logo-White.png" alt="Trustless Academy" className="h-16 w-auto" />
+              <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
             </Link>
           </div>
           <nav className="flex items-center space-x-6">
-            <Link href="/tutorials" className="text-blue-600 font-medium">
+            <Link href="/tutorials" className="text-purple-400 font-medium">
               Tutorials
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
+            <Link href="/about" className="text-gray-300 hover:text-purple-400 transition-colors">
               About
             </Link>
           </nav>
@@ -83,10 +83,10 @@ export default function TutorialsPage() {
         {/* Page Header */}
         <div className="text-center mb-12">
           <DuckMascot size="large" expression="excited" className="mx-auto mb-6" />
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-white mb-4">
             Web3 Learning Path
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Start from the basics and progress through interactive experiences. Each lesson builds on the previous one, creating a complete learning journey.
           </p>
         </div>
@@ -98,8 +98,8 @@ export default function TutorialsPage() {
               key={tutorial.id}
               className={`relative overflow-hidden rounded-2xl transition-all ${
                 tutorial.status === 'available'
-                  ? 'bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-1'
-                  : 'bg-gray-100 opacity-75'
+                  ? 'bg-slate-800 border border-slate-700 hover:border-purple-500/50 shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-1'
+                  : 'bg-slate-800/50 border border-slate-700/50 opacity-75'
               }`}
             >
               {tutorial.status === 'available' ? (
@@ -116,35 +116,35 @@ export default function TutorialsPage() {
         </div>
 
         {/* Learning Path Info */}
-        <div className="mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">📚 Your Learning Path</h2>
+        <div className="mt-16 bg-slate-800 border border-slate-700 p-8 rounded-2xl">
+          <h2 className="text-2xl font-bold text-white mb-4">📚 Your Learning Path</h2>
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+              <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
               <div>
-                <h3 className="font-semibold text-gray-800">Start with Blockchain Basics</h3>
-                <p className="text-gray-600">Understand the foundational technology</p>
+                <h3 className="font-semibold text-white">Start with Blockchain Basics</h3>
+                <p className="text-gray-400">Understand the foundational technology</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+              <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
               <div>
-                <h3 className="font-semibold text-gray-800">Learn Ethereum & Smart Contracts</h3>
-                <p className="text-gray-600">Discover how programmable blockchains work</p>
+                <h3 className="font-semibold text-white">Learn Ethereum & Smart Contracts</h3>
+                <p className="text-gray-400">Discover how programmable blockchains work</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+              <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
               <div>
-                <h3 className="font-semibold text-gray-800">Explore Token Standards</h3>
-                <p className="text-gray-600">Understand ERC-20, ERC-721, and ERC-1155 tokens</p>
+                <h3 className="font-semibold text-white">Explore Token Standards</h3>
+                <p className="text-gray-400">Understand ERC-20, ERC-721, and ERC-1155 tokens</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
               <div>
-                <h3 className="font-semibold text-gray-800">Experience Web3 Hands-On</h3>
-                <p className="text-gray-600">Apply everything in the On-Chain Kitchen tutorial</p>
+                <h3 className="font-semibold text-white">Experience Web3 Hands-On</h3>
+                <p className="text-gray-400">Apply everything in the On-Chain Kitchen tutorial</p>
               </div>
             </div>
           </div>
@@ -152,9 +152,9 @@ export default function TutorialsPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
+      <footer className="bg-slate-900 border-t border-slate-800 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             © 2026 Trustless Academy • Learn Web3 by Doing • Open Source Education
           </p>
         </div>
@@ -169,25 +169,25 @@ function TutorialCard({ tutorial }: { tutorial: Tutorial }) {
       <div className="flex items-start justify-between mb-4">
         <div className="text-5xl">{tutorial.icon}</div>
         {tutorial.status === 'coming-soon' && (
-          <span className="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-sm font-medium">
+          <span className="bg-slate-700 text-gray-400 px-3 py-1 rounded-full text-sm font-medium">
             Coming Soon
           </span>
         )}
         {tutorial.status === 'available' && (
-          <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+          <span className="bg-green-900/50 text-green-400 px-3 py-1 rounded-full text-sm font-medium">
             Available Now
           </span>
         )}
       </div>
 
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{tutorial.title}</h3>
-      <p className="text-gray-600 mb-4">{tutorial.description}</p>
+      <h3 className="text-xl font-bold text-white mb-2">{tutorial.title}</h3>
+      <p className="text-gray-400 mb-4">{tutorial.description}</p>
 
       <div className="flex items-center gap-4 text-sm mb-4">
         <span className={`px-2 py-1 rounded ${
-          tutorial.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' :
-          tutorial.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
-          'bg-red-100 text-red-700'
+          tutorial.difficulty === 'Beginner' ? 'bg-green-900/50 text-green-400' :
+          tutorial.difficulty === 'Intermediate' ? 'bg-yellow-900/50 text-yellow-400' :
+          'bg-red-900/50 text-red-400'
         }`}>
           {tutorial.difficulty}
         </span>
@@ -198,7 +198,7 @@ function TutorialCard({ tutorial }: { tutorial: Tutorial }) {
         {tutorial.topics.map((topic) => (
           <span
             key={topic}
-            className="bg-indigo-50 text-indigo-700 px-2 py-1 rounded text-sm"
+            className="bg-purple-900/30 text-purple-400 px-2 py-1 rounded text-sm"
           >
             {topic}
           </span>
@@ -206,7 +206,7 @@ function TutorialCard({ tutorial }: { tutorial: Tutorial }) {
       </div>
 
       {tutorial.status === 'available' && (
-        <div className="mt-6 text-blue-600 font-medium flex items-center">
+        <div className="mt-6 text-purple-400 font-medium flex items-center">
           Start Learning →
         </div>
       )}

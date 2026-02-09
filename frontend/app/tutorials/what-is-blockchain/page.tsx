@@ -18,18 +18,18 @@ export const metadata: Metadata = {
 
 export default function WhatIsBlockchain() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">What is Blockchain?</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-4xl font-bold text-white mb-4">What is Blockchain?</h1>
+          <p className="text-lg text-gray-300">
             Let's understand the magic behind Web3, explained simply!
           </p>
         </div>
 
         {/* Duck Introduction */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-start space-x-4">
             <DuckMascot size="large" expression="happy" />
             <div className="flex-1">
@@ -45,27 +45,27 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Section 1: The Digital Ledger */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📖 Imagine a Digital Notebook</h2>
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">📖 Imagine a Digital Notebook</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-4 text-gray-300">
             <p>
               Think of blockchain as a special notebook that everyone in the world can read, but no one can erase or change what's already written.
             </p>
 
             {/* Visual Metaphor */}
-            <div className="bg-blue-50 rounded-xl p-6 my-6">
+            <div className="bg-slate-700/50 rounded-xl p-6 my-6">
               <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="bg-white rounded-lg p-4">
+                <div className="bg-slate-800 rounded-lg p-4 border border-slate-600">
                   <div className="text-3xl mb-2">📝</div>
                   <div className="font-semibold">Traditional Ledger</div>
-                  <div className="text-sm text-gray-600 mt-1">One owner, can be changed</div>
+                  <div className="text-sm text-gray-400 mt-1">One owner, can be changed</div>
                 </div>
                 <div className="text-2xl self-center">→</div>
-                <div className="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg p-4 border-2 border-blue-300">
+                <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg p-4 border-2 border-purple-500/50">
                   <div className="text-3xl mb-2">🔗</div>
                   <div className="font-semibold">Blockchain</div>
-                  <div className="text-sm text-gray-600 mt-1">Everyone owns, unchangeable</div>
+                  <div className="text-sm text-gray-400 mt-1">Everyone owns, unchangeable</div>
                 </div>
               </div>
             </div>
@@ -78,30 +78,30 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Section 2: What are Blocks? */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📦 What are "Blocks"?</h2>
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">📦 What are "Blocks"?</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-4 text-gray-300">
             <p>
               Each page in our special notebook is called a "block". Every block contains:
             </p>
 
             {/* Block Visualization */}
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
+            <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-xl p-6">
               <div className="space-y-3">
-                <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="bg-slate-800 rounded-lg p-4 shadow-sm border border-slate-600">
                   <span className="text-2xl mr-3">📋</span>
                   <strong>Transactions:</strong> A list of who sent what to whom
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="bg-slate-800 rounded-lg p-4 shadow-sm border border-slate-600">
                   <span className="text-2xl mr-3">⏰</span>
                   <strong>Timestamp:</strong> Exactly when these transactions happened
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="bg-slate-800 rounded-lg p-4 shadow-sm border border-slate-600">
                   <span className="text-2xl mr-3">🔐</span>
                   <strong>Special Code (Hash):</strong> A unique fingerprint for this block
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="bg-slate-800 rounded-lg p-4 shadow-sm border border-slate-600">
                   <span className="text-2xl mr-3">⬅️</span>
                   <strong>Previous Block Link:</strong> Connection to the block before it
                 </div>
@@ -115,22 +115,22 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Section 3: The Chain */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">⛓️ Creating the Chain</h2>
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">⛓️ Creating the Chain</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-4 text-gray-300">
             <p>
               Here's where the magic happens! Each block is connected to the one before it, forming a chain:
             </p>
 
             {/* Chain Visualization */}
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 overflow-x-auto">
+            <div className="bg-gradient-to-r from-green-900/20 to-blue-900/20 rounded-xl p-6 overflow-x-auto">
               <div className="flex items-center space-x-2 min-w-max">
-                <div className="bg-white rounded-lg p-4 shadow-md">
+                <div className="bg-slate-800 rounded-lg p-4 shadow-md border border-slate-600">
                   <div className="text-center">
                     <div className="text-2xl mb-1">📦</div>
                     <div className="text-xs font-semibold">Block 1</div>
-                    <div className="text-xs text-gray-500">Genesis</div>
+                    <div className="text-xs text-gray-400">Genesis</div>
                   </div>
                 </div>
                 <div className="text-2xl">→</div>
@@ -138,7 +138,7 @@ export default function WhatIsBlockchain() {
                   <div className="text-center">
                     <div className="text-2xl mb-1">📦</div>
                     <div className="text-xs font-semibold">Block 2</div>
-                    <div className="text-xs text-gray-500">Links to #1</div>
+                    <div className="text-xs text-gray-400">Links to #1</div>
                   </div>
                 </div>
                 <div className="text-2xl">→</div>
@@ -146,21 +146,21 @@ export default function WhatIsBlockchain() {
                   <div className="text-center">
                     <div className="text-2xl mb-1">📦</div>
                     <div className="text-xs font-semibold">Block 3</div>
-                    <div className="text-xs text-gray-500">Links to #2</div>
+                    <div className="text-xs text-gray-400">Links to #2</div>
                   </div>
                 </div>
                 <div className="text-2xl">→</div>
-                <div className="bg-gradient-to-r from-blue-100 to-cyan-100 rounded-lg p-4 shadow-md border-2 border-blue-300">
+                <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-lg p-4 shadow-md border-2 border-purple-500/50">
                   <div className="text-center">
                     <div className="text-2xl mb-1">📦</div>
                     <div className="text-xs font-semibold">New Block</div>
-                    <div className="text-xs text-gray-500">Links to #3</div>
+                    <div className="text-xs text-gray-400">Links to #3</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-yellow-50 rounded-xl p-4 mt-6">
+            <div className="bg-yellow-100 rounded-xl p-4 mt-6">
               <p className="text-sm">
                 <strong>🦆 Duck Tip:</strong> If someone tries to change an old block, it would break the chain!
                 Everyone would immediately notice because the connections wouldn't match anymore.
@@ -170,24 +170,24 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Section 4: Decentralization */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🌍 No Single Owner (Decentralization)</h2>
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">🌍 No Single Owner (Decentralization)</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-4 text-gray-300">
             <p>
               Here's the revolutionary part: instead of one company keeping the notebook, thousands of people around the world each have an identical copy!
             </p>
 
             {/* Decentralization Visual */}
             <div className="grid grid-cols-2 gap-6 my-6">
-              <div className="bg-red-50 rounded-xl p-6 text-center">
+              <div className="bg-red-900/20 rounded-xl p-6 text-center border border-red-900/30">
                 <div className="text-4xl mb-3">🏢</div>
                 <div className="font-semibold mb-2">Traditional System</div>
                 <div className="text-sm">
                   One company controls everything. If they disappear or get hacked, everything is lost.
                 </div>
               </div>
-              <div className="bg-green-50 rounded-xl p-6 text-center">
+              <div className="bg-green-900/20 rounded-xl p-6 text-center border border-green-900/30">
                 <div className="text-4xl mb-3">🌐</div>
                 <div className="font-semibold mb-2">Blockchain</div>
                 <div className="text-sm">
@@ -204,15 +204,15 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Section 5: Consensus */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🤝 How Everyone Agrees (Consensus)</h2>
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">🤝 How Everyone Agrees (Consensus)</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-4 text-gray-300">
             <p>
               With thousands of copies, how does everyone agree on what's true? They vote!
             </p>
 
-            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6">
+            <div className="bg-gradient-to-r from-purple-900/20 to-purple-900/30 rounded-xl p-6">
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="text-2xl">1️⃣</div>
@@ -241,26 +241,26 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Why It Matters */}
-        <div className="bg-gradient-to-br from-yellow-100 to-amber-100 rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">💡 Why This Matters</h2>
+        <div className="bg-gradient-to-br from-yellow-900/20 to-amber-900/20 rounded-2xl shadow-lg p-8 mb-8 border border-yellow-900/30">
+          <h2 className="text-2xl font-bold text-white mb-6">💡 Why This Matters</h2>
 
-          <div className="space-y-4 text-gray-700">
+          <div className="space-y-4 text-gray-300">
             <p className="font-semibold">Blockchain creates something we've never had before:</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-white rounded-lg p-4">
+              <div className="bg-slate-800 rounded-lg p-4 border border-slate-600">
                 <div className="text-xl mb-2">🔒 Trust Without Middlemen</div>
                 <div className="text-sm">Send money directly without banks</div>
               </div>
-              <div className="bg-white rounded-lg p-4">
+              <div className="bg-slate-800 rounded-lg p-4 border border-slate-600">
                 <div className="text-xl mb-2">📜 Permanent Records</div>
                 <div className="text-sm">History that can't be erased or altered</div>
               </div>
-              <div className="bg-white rounded-lg p-4">
+              <div className="bg-slate-800 rounded-lg p-4 border border-slate-600">
                 <div className="text-xl mb-2">🌍 Global Access</div>
                 <div className="text-sm">Available to anyone with internet</div>
               </div>
-              <div className="bg-white rounded-lg p-4">
+              <div className="bg-slate-800 rounded-lg p-4 border border-slate-600">
                 <div className="text-xl mb-2">🎯 Transparent</div>
                 <div className="text-sm">Everyone can verify what's happening</div>
               </div>
@@ -269,7 +269,7 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Duck Summary */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex items-start space-x-4">
             <DuckMascot size="medium" expression="curious" />
             <div className="flex-1">
@@ -285,15 +285,15 @@ export default function WhatIsBlockchain() {
         </div>
 
         {/* Next Steps */}
-        <div className="bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl shadow-lg p-8">
+        <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 rounded-2xl shadow-lg p-8 border border-purple-500/30">
           <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Ready for the Next Step?</h3>
-            <p className="text-gray-700 mb-6">
+            <h3 className="text-xl font-bold text-white mb-4">Ready for the Next Step?</h3>
+            <p className="text-gray-300 mb-6">
               Now that you understand blockchain, let's explore Ethereum — the blockchain that adds superpowers!
             </p>
             <Link
               href="/tutorials/what-is-ethereum"
-              className="inline-flex items-center bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium"
+              className="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-medium"
             >
               Next Tutorial: What is Ethereum →
             </Link>

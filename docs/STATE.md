@@ -252,6 +252,39 @@
 
 ### UX Polish Complete ✅
 
+### Site-wide Dark Theme Complete ✅
+
+- **Entire site updated to dark theme** - Consistent slate-900/800 backgrounds throughout
+  - Homepage maintains sophisticated dark gradient with purple accents
+  - Tutorials listing page uses dark cards with purple hover effects
+  - All tutorial content pages (Blockchain, Ethereum, Token Standards) have dark backgrounds
+  - On-Chain Kitchen steps use consistent dark theme with purple navigation
+  - Waitlist page matches site-wide dark aesthetic
+  - Navigation bars use white logo variant for proper contrast
+  - Step progress bar updated with dark styling
+- **Build verification passed** - All pages compile successfully with dark theme changes
+
+### Enhanced Error Handling Complete ✅
+
+- **Shop insufficient tokens error** - User-friendly message replacing contract errors
+  - Shows "Not enough KitchenTokens! Head to the Faucet to claim some free tokens."
+  - Includes direct link to Faucet page for easy navigation
+  - Catches multiple error message variations for comprehensive coverage
+- **Oven minimum ingredients validation** - Frontend validation prevents wasted transactions
+  - Requires at least 2 total ingredients to cook
+  - Disables "Start Cooking" button when requirement not met
+  - Shows clear error message: "Select at least 2 ingredients to cook a dish"
+
+### Cookbook Loading Fix Complete ✅
+
+- **Multiple NFT loading resolved** - Cookbook now loads up to 3 dishes (expandable)
+  - Fixed single-token limitation by adding multiple tokenURI reads
+  - Each owned NFT now properly displays with on-chain SVG
+  - Removed misleading "Loading your dishes..." message
+  - All dishes display with proper metadata and Etherscan links
+
+### Copy Updates Complete ✅
+
 - **Navbar logos enlarged** - All TA-Hero-Logo.png instances increased from h-8 to h-12 (48px) for better visibility
 - **Homepage hero logo prominently sized** - TA-Hero-Logo-Text.png increased from h-32 to h-48 for strong brand presence
 - **Shop interface improvements**:
@@ -381,4 +414,4 @@ None currently. Frontend is fully prepared for Vercel deployment with updated co
 
 ---
 
-*Last updated: Homepage hero enhanced - White logo variants applied, animated particle network added with purple theme, hero logo increased to h-96 for maximum prominence*
+*Last updated: Dark theme expanded site-wide, enhanced error handling added, minimum ingredients validation implemented, cookbook loading fixed, all changes build successfully*

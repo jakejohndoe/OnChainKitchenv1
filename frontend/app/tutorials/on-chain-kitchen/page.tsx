@@ -25,16 +25,16 @@ export default function OnChainKitchenIntro() {
             <div className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
                 <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
-                <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
+                <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
               </Link>
               <span className="text-gray-400">/</span>
-              <Link href="/tutorials" className="text-gray-600 hover:text-amber-600">
+              <Link href="/tutorials" className="text-gray-400 hover:text-amber-600">
                 Tutorials
               </Link>
               <span className="text-gray-400">/</span>
               <span className="text-amber-600 font-medium">On-Chain Kitchen</span>
             </div>
-            <div className="text-sm text-gray-600 bg-amber-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-400 bg-amber-100 px-3 py-1 rounded-full">
               Welcome
             </div>
           </div>
@@ -45,39 +45,39 @@ export default function OnChainKitchenIntro() {
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <DuckMascot size="xlarge" expression="excited" className="mx-auto mb-6" />
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">
+          <h1 className="text-5xl font-bold text-white mb-4">
             Welcome to On-Chain Kitchen! 👨‍🍳
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Learn Web3 by cooking! Experience ERC-20 tokens, ERC-1155 inventories, and ERC-721 NFTs
             through an interactive tutorial where you click, explore, and understand — no coding required.
           </p>
         </div>
 
         {/* What You'll Build */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">🎯 What You'll Experience</h2>
+        <div className="bg-slate-800 border border-slate-700 p-8 rounded-2xl shadow-sm border border-gray-200 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">🎯 What You'll Experience</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <span className="text-2xl">🪙</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800">ERC-20 Token Faucet</h3>
-                  <p className="text-sm text-gray-600">Claim free KitchenTokens to start your journey</p>
+                  <h3 className="font-semibold text-white">ERC-20 Token Faucet</h3>
+                  <p className="text-sm text-gray-400">Claim free KitchenTokens to start your journey</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-2xl">🛒</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800">ERC-1155 Ingredient Shop</h3>
-                  <p className="text-sm text-gray-600">Buy ingredients using batch transactions</p>
+                  <h3 className="font-semibold text-white">ERC-1155 Ingredient Shop</h3>
+                  <p className="text-sm text-gray-400">Buy ingredients using batch transactions</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-2xl">📦</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800">Multi-Token Inventory</h3>
-                  <p className="text-sm text-gray-600">Manage your ingredients in the pantry</p>
+                  <h3 className="font-semibold text-white">Multi-Token Inventory</h3>
+                  <p className="text-sm text-gray-400">Manage your ingredients in the pantry</p>
                 </div>
               </div>
             </div>
@@ -85,22 +85,22 @@ export default function OnChainKitchenIntro() {
               <div className="flex items-start space-x-3">
                 <span className="text-2xl">🔥</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800">Cooking Mechanics</h3>
-                  <p className="text-sm text-gray-600">Burn ingredients to create dishes</p>
+                  <h3 className="font-semibold text-white">Cooking Mechanics</h3>
+                  <p className="text-sm text-gray-400">Burn ingredients to create dishes</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-2xl">🖼️</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800">ERC-721 NFT Dishes</h3>
-                  <p className="text-sm text-gray-600">Mint unique NFTs with on-chain recipes</p>
+                  <h3 className="font-semibold text-white">ERC-721 NFT Dishes</h3>
+                  <p className="text-sm text-gray-400">Mint unique NFTs with on-chain recipes</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-2xl">📚</span>
                 <div>
-                  <h3 className="font-semibold text-gray-800">NFT Cookbook Gallery</h3>
-                  <p className="text-sm text-gray-600">View your collection of created dishes</p>
+                  <h3 className="font-semibold text-white">NFT Cookbook Gallery</h3>
+                  <p className="text-sm text-gray-400">View your collection of created dishes</p>
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function OnChainKitchenIntro() {
 
         {/* Tutorial Steps */}
         <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-8 rounded-2xl mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">📖 Tutorial Steps</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">📖 Tutorial Steps</h2>
           <div className="space-y-3">
             <StepItem number={1} title="Faucet" description="Claim your first ERC-20 tokens" />
             <StepItem number={2} title="Shop" description="Buy ingredients with batch transactions" />
@@ -122,10 +122,10 @@ export default function OnChainKitchenIntro() {
         {/* Connection Section */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl mb-8">
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">
+            <h3 className="text-2xl font-bold text-white mb-3">
               Ready to Start Cooking?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               First, connect your wallet to get started. We'll be using the Sepolia testnet - completely safe for learning!
             </p>
           </div>
@@ -168,12 +168,12 @@ export default function OnChainKitchenIntro() {
 function StepItem({ number, title, description }: { number: number; title: string; description: string }) {
   return (
     <div className="flex items-center space-x-4 p-3 rounded-lg hover:bg-white/50 transition-colors">
-      <div className="w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
+      <div className="w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
         {number}
       </div>
       <div>
-        <h3 className="font-semibold text-gray-800">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
+        <h3 className="font-semibold text-white">{title}</h3>
+        <p className="text-sm text-gray-400">{description}</p>
       </div>
     </div>
   )

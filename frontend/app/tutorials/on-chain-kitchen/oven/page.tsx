@@ -9,21 +9,21 @@ export default function OvenPage() {
   const { isConnected } = useAccount()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
       <header className="w-full bg-white/80 backdrop-blur-sm border-b border-orange-200 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
-              <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
+              <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="text-sm text-gray-600 bg-orange-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-400 bg-orange-100 px-3 py-1 rounded-full">
               On-Chain Kitchen: Oven
             </div>
-            <div className="text-sm text-gray-600 bg-green-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-400 bg-green-100 px-3 py-1 rounded-full">
               Sepolia Testnet
             </div>
           </div>
@@ -35,14 +35,14 @@ export default function OvenPage() {
         {/* Page Header */}
         <div className="text-center mb-12">
           <DuckMascot size="large" expression="excited" className="mx-auto mb-6" />
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             🔥 The Oven
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Time to cook! Burn your ingredients to mint unique Dish NFTs with on-chain recipes.
           </p>
           <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-300">
               <strong>📍 What you'll learn:</strong> Experience token burning, NFT minting, and deterministic on-chain metadata.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function OvenPage() {
       {/* Footer */}
       <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-400 text-sm">
             Learning token burning and NFT minting • Powered by{' '}
             <span className="font-medium">Sepolia Testnet</span>
           </p>

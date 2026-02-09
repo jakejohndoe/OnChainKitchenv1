@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { KITCHEN_TOKEN_ABI, KITCHEN_TOKEN_ADDRESS, INGREDIENTS_ABI, INGREDIENTS_ADDRESS } from '../lib/contracts'
 import DuckMascot from './DuckMascot'
@@ -349,7 +350,16 @@ export default function ShopInterface() {
 
         {error && (
           <div className="mt-4 bg-red-100 p-3 rounded-lg">
-            <p className="text-red-800 text-sm">❌ Error: {error.message}</p>
+            <p className="text-red-800 text-sm">
+              ❌ {error.message.includes('insufficient') || error.message.includes('exceeds balance') || error.message.includes('KitchenToken: Insufficient balance')
+                ? 'Not enough KitchenTokens! Head to the Faucet to claim some free tokens.'
+                : `Error: ${error.message}`}
+            </p>
+            {(error.message.includes('insufficient') || error.message.includes('exceeds balance') || error.message.includes('KitchenToken: Insufficient balance')) && (
+              <Link href="/tutorials/on-chain-kitchen/faucet" className="inline-block mt-2 text-blue-600 underline hover:text-blue-800">
+                Go to Faucet →
+              </Link>
+            )}
           </div>
         )}
       </div>

@@ -16,14 +16,14 @@ export default function CookbookPage() {
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
-              <h1 className="text-xl font-bold text-gray-800">Trustless Academy</h1>
+              <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="text-sm text-gray-600 bg-purple-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-400 bg-purple-100 px-3 py-1 rounded-full">
               On-Chain Kitchen: Cookbook
             </div>
-            <div className="text-sm text-gray-600 bg-green-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-400 bg-green-100 px-3 py-1 rounded-full">
               Sepolia Testnet
             </div>
           </div>
@@ -35,14 +35,14 @@ export default function CookbookPage() {
         {/* Page Header */}
         <div className="text-center mb-12">
           <DuckMascot size="large" expression="excited" className="mx-auto mb-6" />
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             📚 Your Cookbook
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Browse your collection of NFT dishes! Each one is a unique ERC-721 token with its recipe stored on-chain.
           </p>
           <div className="bg-yellow-50 rounded-xl p-4 mt-6 max-w-2xl mx-auto">
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-300">
               <strong>📍 What you'll learn:</strong> Understand ERC-721 NFTs, true digital ownership, and on-chain metadata.
             </p>
           </div>
@@ -95,7 +95,7 @@ export default function CookbookPage() {
       {/* Footer */}
       <footer className="bg-white/50 border-t border-gray-200 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-400 text-sm">
             Learning ERC-721 NFTs and on-chain metadata • Powered by{' '}
             <span className="font-medium">Sepolia Testnet</span>
           </p>
