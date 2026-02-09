@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function TokenStandards() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -54,7 +54,7 @@ export default function TokenStandards() {
               Think of them as instruction manuals!
             </p>
 
-            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 my-6">
+            <div className="bg-gradient-to-r from-blue-900/20 to-cyan-900/20 rounded-xl p-6 my-6 border border-blue-900/30">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-slate-800 rounded-lg p-4 text-center">
                   <div className="text-3xl mb-2">🏗️</div>
@@ -188,7 +188,7 @@ export default function TokenStandards() {
             </p>
 
             {/* Backpack Analogy */}
-            <div className="bg-orange-50 rounded-xl p-6 my-6">
+            <div className="bg-orange-900/20 rounded-xl p-6 my-6 border border-orange-900/30">
               <div className="text-center mb-4">
                 <div className="text-4xl mb-2">🎒</div>
                 <div className="font-bold text-lg">Think: Gaming Inventory</div>
@@ -219,7 +219,7 @@ export default function TokenStandards() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-center">
+                <div className="bg-slate-700 rounded-lg p-3 text-center">
                   <p className="text-sm">
                     Some items are stackable (coins, potions), others are unique (sword, achievement)
                   </p>
@@ -269,7 +269,7 @@ export default function TokenStandards() {
                   <td className="p-3">Unique & different</td>
                   <td className="p-3">Art, collectibles, real estate</td>
                 </tr>
-                <tr className="bg-orange-50">
+                <tr className="bg-orange-900/20">
                   <td className="p-3 font-medium">ERC-1155</td>
                   <td className="p-3">🎒 Game inventory</td>
                   <td className="p-3">Mix of both</td>
@@ -364,7 +364,7 @@ export default function TokenStandards() {
             </p>
             <Link
               href="/tutorials/on-chain-kitchen"
-              className="inline-flex items-center bg-gradient-to-r from-green-500 to-teal-500 text-white px-8 py-4 rounded-lg hover:from-green-600 hover:to-teal-600 transition-all duration-200 font-medium text-lg shadow-lg"
+              className="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 font-medium text-lg shadow-lg"
             >
               🍳 Start Cooking with On-Chain Kitchen →
             </Link>
