@@ -120,7 +120,7 @@ export default function TokenStandards() {
             </div>
 
             <div className="bg-yellow-100 rounded-xl p-4">
-              <p className="text-sm">
+              <p className="text-sm text-gray-900">
                 <strong>🦆 Examples you might know:</strong> USDC (digital dollars), DAI (stable currency),
                 UNI (Uniswap governance), and yes — the KitchenTokens in our tutorial are ERC-20 tokens!
               </p>
@@ -169,7 +169,7 @@ export default function TokenStandards() {
             </div>
 
             <div className="bg-yellow-100 rounded-xl p-4">
-              <p className="text-sm">
+              <p className="text-sm text-gray-900">
                 <strong>🦆 Examples:</strong> CryptoKitties (digital cats), Bored Apes (profile pictures),
                 digital art, virtual real estate, and the Dish NFTs you create in our Kitchen tutorial!
               </p>
@@ -233,7 +233,7 @@ export default function TokenStandards() {
             </p>
 
             <div className="bg-yellow-100 rounded-xl p-4">
-              <p className="text-sm">
+              <p className="text-sm text-gray-900">
                 <strong>🦆 In our Kitchen:</strong> The Ingredients contract uses ERC-1155!
                 It manages multiple ingredient types (tomato, cheese, meat) — you can own many of each type,
                 but they're all stored efficiently in one contract.

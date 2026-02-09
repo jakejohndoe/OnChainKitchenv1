@@ -82,7 +82,7 @@ export default function WaitlistPage() {
           {/* Headline with Duck */}
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-8">
-              <img src="/logos/TA-Hero-Logo-White.png" alt="Trustless Academy" className="h-40 w-auto" />
+              <img src="/logos/TA-Hero-Logo-Text-White.png" alt="Trustless Academy" className="h-96 w-auto" />
             </div>
 
             <h2 className="text-5xl font-bold text-white mb-6">

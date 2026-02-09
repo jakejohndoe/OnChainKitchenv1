@@ -17,24 +17,24 @@ export default function OnChainKitchenIntro() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header with Navigation */}
-      <header className="w-full bg-white/80 backdrop-blur-sm border-b border-amber-200 sticky top-0 z-10">
+      <header className="w-full bg-slate-900/80 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                <img src="/logos/TA-Hero-Logo.png" alt="Trustless Academy" className="h-16 w-auto" />
+                <img src="/logos/TA-Hero-Logo-White.png" alt="Trustless Academy" className="h-16 w-auto" />
                 <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
               </Link>
               <span className="text-gray-400">/</span>
-              <Link href="/tutorials" className="text-gray-400 hover:text-amber-600">
+              <Link href="/tutorials" className="text-gray-400 hover:text-purple-400">
                 Tutorials
               </Link>
               <span className="text-gray-400">/</span>
-              <span className="text-amber-600 font-medium">On-Chain Kitchen</span>
+              <span className="text-purple-400 font-medium">On-Chain Kitchen</span>
             </div>
-            <div className="text-sm text-gray-400 bg-amber-100 px-3 py-1 rounded-full">
+            <div className="text-sm text-gray-400 bg-slate-700 px-3 py-1 rounded-full">
               Welcome
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function OnChainKitchenIntro() {
         </div>
 
         {/* Tutorial Steps */}
-        <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-8 rounded-2xl mb-8">
+        <div className="bg-slate-800 border border-slate-700 p-8 rounded-2xl mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">📖 Tutorial Steps</h2>
           <div className="space-y-3">
             <StepItem number={1} title="Faucet" description="Claim your first ERC-20 tokens" />
@@ -120,7 +120,7 @@ export default function OnChainKitchenIntro() {
         </div>
 
         {/* Connection Section */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl mb-8">
+        <div className="bg-slate-800 border border-slate-700 p-8 rounded-2xl mb-8">
           <div className="text-center mb-6">
             <h3 className="text-2xl font-bold text-white mb-3">
               Ready to Start Cooking?
@@ -139,7 +139,7 @@ export default function OnChainKitchenIntro() {
           <div className="text-center">
             <button
               onClick={handleStart}
-              className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl"
             >
               Start Tutorial →
             </button>
@@ -147,12 +147,12 @@ export default function OnChainKitchenIntro() {
         )}
 
         {/* Educational Note */}
-        <div className="mt-12 bg-amber-50 p-6 rounded-xl border border-amber-200">
+        <div className="mt-12 bg-yellow-100 p-6 rounded-xl border border-yellow-300">
           <div className="flex items-start space-x-3">
             <DuckMascot size="small" expression="curious" />
             <div>
-              <h4 className="font-semibold text-amber-800 mb-2">Why Cooking?</h4>
-              <p className="text-amber-700 text-sm">
+              <h4 className="font-semibold text-gray-900 mb-2">Why Cooking?</h4>
+              <p className="text-gray-800 text-sm">
                 Cooking is the perfect metaphor for blockchain concepts! Ingredients are like tokens,
                 recipes are like smart contracts, and dishes are like NFTs. Through this interactive experience,
                 you'll understand how real Web3 applications work - all while having fun!
@@ -167,7 +167,7 @@ export default function OnChainKitchenIntro() {
 
 function StepItem({ number, title, description }: { number: number; title: string; description: string }) {
   return (
-    <div className="flex items-center space-x-4 p-3 rounded-lg hover:bg-white/50 transition-colors">
+    <div className="flex items-center space-x-4 p-3 rounded-lg hover:bg-slate-700/50 transition-colors">
       <div className="w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
         {number}
       </div>

@@ -34,7 +34,7 @@ export default function WhatIsBlockchain() {
             <DuckMascot size="large" expression="happy" />
             <div className="flex-1">
               <div className="bg-yellow-100 rounded-xl p-4">
-                <p className="text-gray-700">
+                <p className="text-gray-900">
                   <strong>Quack! 🦆</strong> I'm your friendly guide through the world of blockchain!
                   No coding required, no jargon — just simple explanations that anyone can understand.
                   Let's explore together!
@@ -161,7 +161,7 @@ export default function WhatIsBlockchain() {
             </div>
 
             <div className="bg-yellow-100 rounded-xl p-4 mt-6">
-              <p className="text-sm">
+              <p className="text-sm text-gray-900">
                 <strong>🦆 Duck Tip:</strong> If someone tries to change an old block, it would break the chain!
                 Everyone would immediately notice because the connections wouldn't match anymore.
               </p>
@@ -274,7 +274,7 @@ export default function WhatIsBlockchain() {
             <DuckMascot size="medium" expression="curious" />
             <div className="flex-1">
               <div className="bg-green-100 rounded-xl p-4">
-                <p className="text-gray-700">
+                <p className="text-gray-900">
                   <strong>🦆 Quick Recap:</strong> Blockchain is a shared digital notebook that everyone can read but no one can change.
                   It's made of connected blocks forming an unbreakable chain, maintained by thousands of people worldwide who all agree on what's true.
                   Pretty cool, right?

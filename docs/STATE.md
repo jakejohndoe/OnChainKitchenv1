@@ -285,6 +285,30 @@
 
 ### Copy Updates Complete ✅
 
+### UI Polish & Consistency Fixes Complete ✅
+
+- **Waitlist page logo updated** - Replaced icon-only logo with full TA-Hero-Logo-Text-White.png
+  - Now uses same prominent h-96 sizing as homepage hero for brand consistency
+  - Full logo with text underneath matches homepage presentation
+- **On-Chain Kitchen welcome page dark themed** - Applied consistent dark theme
+  - Background changed from light amber/orange to slate-900/800 gradient
+  - Navigation uses white logo variant with proper contrast
+  - All cards use dark slate-800 with border styling
+  - Duck educational note uses yellow-100 with dark text for readability
+  - Button styling updated to purple/pink gradient matching site-wide theme
+- **Duck Tip boxes text contrast fixed** - Improved readability across all tutorial pages
+  - Yellow-100 background boxes now use text-gray-900 for high contrast
+  - Green-100 boxes (Duck recaps) use text-gray-900
+  - Purple-100 boxes (Duck intros) use text-gray-900
+  - Fixed in: What is Blockchain, What is Ethereum, Token Standards tutorials
+- **Font consistency verified** - Consistent font-bold and font-sans throughout
+  - Homepage hero: text-5xl font-bold
+  - Tutorial headers: text-4xl font-bold
+  - All using default font-sans family
+- **Build verification passed** - All UI changes compile successfully
+
+### Copy Updates Complete ✅
+
 - **Navbar logos enlarged** - All TA-Hero-Logo.png instances increased from h-8 to h-12 (48px) for better visibility
 - **Homepage hero logo prominently sized** - TA-Hero-Logo-Text.png increased from h-32 to h-48 for strong brand presence
 - **Shop interface improvements**:
@@ -414,4 +438,4 @@ None currently. Frontend is fully prepared for Vercel deployment with updated co
 
 ---
 
-*Last updated: Dark theme expanded site-wide, enhanced error handling added, minimum ingredients validation implemented, cookbook loading fixed, all changes build successfully*
+*Last updated: UI consistency fixes complete - waitlist logo updated to full text version, On-Chain Kitchen welcome page dark themed, Duck Tip text contrast fixed, font consistency verified*

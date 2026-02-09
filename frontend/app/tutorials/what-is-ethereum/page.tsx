@@ -34,7 +34,7 @@ export default function WhatIsEthereum() {
             <DuckMascot size="large" expression="excited" />
             <div className="flex-1">
               <div className="bg-purple-100 rounded-xl p-4">
-                <p className="text-gray-300">
+                <p className="text-gray-900">
                   <strong>Quack quack! 🦆</strong> Welcome back! You already understand blockchain —
                   now let's explore Ethereum, which takes those concepts and adds programmable magic!
                   Think of it as blockchain 2.0!
@@ -145,7 +145,7 @@ export default function WhatIsEthereum() {
             </p>
 
             <div className="bg-yellow-100 rounded-xl p-4 mt-6">
-              <p className="text-sm">
+              <p className="text-sm text-gray-900">
                 <strong>🦆 Duck Example:</strong> Imagine buying a concert ticket. With a smart contract,
                 when you send payment, you automatically receive the digital ticket. No ticket office needed!
                 The contract handles everything automatically.
@@ -314,7 +314,7 @@ export default function WhatIsEthereum() {
             <DuckMascot size="medium" expression="happy" />
             <div className="flex-1">
               <div className="bg-green-100 rounded-xl p-4">
-                <p className="text-gray-300">
+                <p className="text-gray-900">
                   <strong>🦆 Let's Recap:</strong> Ethereum is blockchain + programmability.
                   It's a world computer where smart contracts (programs) run automatically,
                   powered by gas (fees), managed through accounts (digital identities),
