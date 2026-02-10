@@ -61,7 +61,11 @@ keys/
 .secret
 .private
 mnemonic*
-seed*
+seed.txt
+seed_*
+*.seed
+mnemonic_seed*
+recovery_seed*
 
 # IDE and Editor files
 .vscode/
