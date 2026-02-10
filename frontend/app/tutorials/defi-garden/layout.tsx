@@ -1,0 +1,104 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import DuckMascot from '../../../components/DuckMascot'
+
+const steps = [
+  { id: 'intro', title: 'Welcome', path: '/tutorials/defi-garden' },
+  { id: 'faucet', title: 'Seed Bag', path: '/tutorials/defi-garden/faucet' },
+  { id: 'deposit', title: 'Plant Seeds', path: '/tutorials/defi-garden/deposit' },
+  { id: 'greenhouse', title: 'Greenhouse', path: '/tutorials/defi-garden/greenhouse' },
+  { id: 'redeem', title: 'Harvest', path: '/tutorials/defi-garden/redeem' },
+  { id: 'complete', title: 'Complete', path: '/tutorials/defi-garden/complete' },
+]
+
+export default function DeFiGardenLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const pathname = usePathname()
+  const currentStepIndex = steps.findIndex(step => step.path === pathname)
+  const currentStep = steps[currentStepIndex]
+  const prevStep = currentStepIndex > 0 ? steps[currentStepIndex - 1] : null
+  const nextStep = currentStepIndex < steps.length - 1 ? steps[currentStepIndex + 1] : null
+
+  // Don't show navigation on the intro page or complete page
+  const showNavigation = pathname !== '/tutorials/defi-garden' && pathname !== '/tutorials/defi-garden/complete'
+
+  return (
+    <div className="min-h-screen">
+      {children}
+
+      {/* Step Navigation */}
+      {showNavigation && (
+        <div className="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 shadow-lg z-20">
+          <div className="max-w-6xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Previous Button */}
+              <div className="w-32">
+                {prevStep && (
+                  <Link
+                    href={prevStep.path}
+                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <span>←</span>
+                    <span>{prevStep.title}</span>
+                  </Link>
+                )}
+              </div>
+
+              {/* Progress Indicator */}
+              <div className="flex items-center space-x-3">
+                {steps.slice(1).map((step, index) => (
+                  <div key={step.id} className="flex items-center">
+                    <Link
+                      href={step.path}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-medium transition-all ${
+                        index + 1 < currentStepIndex
+                          ? 'bg-green-500 text-white'
+                          : index + 1 === currentStepIndex
+                          ? 'bg-purple-500 text-white shadow-lg scale-110'
+                          : 'bg-slate-700 text-gray-500'
+                      }`}
+                    >
+                      {index + 1 < currentStepIndex ? '✓' : index + 1}
+                    </Link>
+                    {index < steps.length - 2 && (
+                      <div
+                        className={`w-12 h-1 mx-1 rounded ${
+                          index + 1 < currentStepIndex ? 'bg-green-500' : 'bg-slate-700'
+                        }`}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Next Button */}
+              <div className="w-32 text-right">
+                {nextStep && (
+                  <Link
+                    href={nextStep.path}
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all font-medium"
+                  >
+                    <span>{nextStep.title}</span>
+                    <span>→</span>
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Step Counter */}
+            {currentStepIndex > 0 && (
+              <div className="text-center mt-2 text-sm text-gray-400">
+                Step {currentStepIndex} of {steps.length - 1}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

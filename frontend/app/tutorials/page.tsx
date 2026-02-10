@@ -52,6 +52,16 @@ const tutorials: Tutorial[] = [
     status: 'available',
     icon: '👨‍🍳',
     topics: ['ERC-20 Faucet', 'ERC-1155 Shop', 'NFT Minting', 'Interactive Experience']
+  },
+  {
+    id: 'defi-garden',
+    title: 'Lesson 5: The DeFi Garden',
+    description: 'Plant tokens, watch them grow, and harvest your yield. Learn how DeFi staking and vaults work.',
+    difficulty: 'Intermediate',
+    duration: '1.5 hours',
+    status: 'available',
+    icon: '🌱',
+    topics: ['Token Approvals', 'Staking', 'ERC-4626 Vaults', 'Auto-compounding', 'DeFi']
   }
 ]
 
