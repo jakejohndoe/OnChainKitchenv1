@@ -21,8 +21,12 @@ help:
 	@echo "  test-verbose   Run tests with verbose output"
 	@echo ""
 	@echo "Sepolia Deployment:"
-	@echo "  deploy-sepolia Deploy contracts to Sepolia testnet"
-	@echo "  export-sepolia Export Sepolia addresses for frontend"
+	@echo "  deploy-sepolia         Deploy On-Chain Kitchen to Sepolia testnet"
+	@echo "  export-sepolia         Export Sepolia addresses for frontend"
+	@echo ""
+	@echo "DeFi Garden:"
+	@echo "  deploy-defi-garden-local    Deploy DeFi Garden to Anvil"
+	@echo "  deploy-defi-garden-sepolia  Deploy DeFi Garden to Sepolia testnet"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  build          Compile contracts"
@@ -92,19 +96,42 @@ setup-local: build deploy-local export-local
 	@echo "3. Connect MetaMask to http://localhost:8545 with chain ID 31337"
 	@echo "4. Import the default Anvil account with private key: $(PRIVATE_KEY)"
 
-# Sepolia deployment
+# Sepolia deployment - On-Chain Kitchen
 .PHONY: deploy-sepolia
 deploy-sepolia:
-	@if [ -z "$(SEPOLIA_RPC_URL)" ]; then \
-		echo "Error: SEPOLIA_RPC_URL environment variable is required"; \
+	@echo "Loading environment from .env file..."
+	@source .env && \
+	if [ -z "$$SEPOLIA_RPC_URL" ]; then \
+		echo "Error: SEPOLIA_RPC_URL not found in .env file"; \
 		exit 1; \
-	fi
-	@if [ -z "$(SEPOLIA_PRIVATE_KEY)" ]; then \
-		echo "Error: SEPOLIA_PRIVATE_KEY environment variable is required"; \
+	fi && \
+	if [ -z "$$SEPOLIA_PRIVATE_KEY" ]; then \
+		echo "Error: SEPOLIA_PRIVATE_KEY not found in .env file"; \
 		exit 1; \
-	fi
-	@echo "Deploying contracts to Sepolia testnet..."
-	PRIVATE_KEY=$(SEPOLIA_PRIVATE_KEY) forge script script/Deploy.s.sol:Deploy --rpc-url $(SEPOLIA_RPC_URL) --broadcast --verify
+	fi && \
+	echo "Deploying On-Chain Kitchen contracts to Sepolia testnet..." && \
+	PRIVATE_KEY=$$SEPOLIA_PRIVATE_KEY forge script script/Deploy.s.sol:Deploy --rpc-url $$SEPOLIA_RPC_URL --broadcast --verify
+
+# DeFi Garden deployment
+.PHONY: deploy-defi-garden-local
+deploy-defi-garden-local:
+	@echo "Deploying DeFi Garden contracts to Anvil..."
+	@PRIVATE_KEY=$(PRIVATE_KEY) forge script script/DeployDeFiGarden.s.sol:DeployDeFiGarden --rpc-url $(RPC_URL) --broadcast
+
+.PHONY: deploy-defi-garden-sepolia
+deploy-defi-garden-sepolia:
+	@echo "Loading environment from .env file..."
+	@source .env && \
+	if [ -z "$$SEPOLIA_RPC_URL" ]; then \
+		echo "Error: SEPOLIA_RPC_URL not found in .env file"; \
+		exit 1; \
+	fi && \
+	if [ -z "$$SEPOLIA_PRIVATE_KEY" ]; then \
+		echo "Error: SEPOLIA_PRIVATE_KEY not found in .env file"; \
+		exit 1; \
+	fi && \
+	echo "Deploying DeFi Garden contracts to Sepolia testnet..." && \
+	PRIVATE_KEY=$$SEPOLIA_PRIVATE_KEY forge script script/DeployDeFiGarden.s.sol:DeployDeFiGarden --rpc-url $$SEPOLIA_RPC_URL --broadcast --verify
 
 .PHONY: export-sepolia
 export-sepolia:
