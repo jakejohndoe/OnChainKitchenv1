@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Trustless Academy — Learn Web3 by Doing',
+  title: 'Trustless Academy — Web3 clicks when you click things',
   description: 'Interactive blockchain tutorials on real networks. No coding required.',
   openGraph: {
-    title: 'Trustless Academy — Learn Web3 by Doing',
+    title: 'Trustless Academy — Web3 clicks when you click things',
     description: 'Interactive blockchain tutorials on real networks. No coding required.',
     url: 'https://trustless.academy/waitlist',
     images: [
@@ -19,9 +19,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Trustless Academy — Learn Web3 by Doing',
+    title: 'Trustless Academy — Web3 clicks when you click things',
     description: 'Interactive blockchain tutorials on real networks. No coding required.',
     images: ['/logos/TA-Hero-Logo-Text.png'],
+    site: '@jakejohndoe',
   },
 }
 

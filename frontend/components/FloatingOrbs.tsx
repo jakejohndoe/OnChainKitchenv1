@@ -8,6 +8,7 @@ interface Node {
   vx: number
   vy: number
   opacity: number
+  size: number
 }
 
 export default function FloatingOrbs() {
@@ -31,14 +32,15 @@ export default function FloatingOrbs() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 
-    // Initialize nodes
-    const nodeCount = 25
+    // Initialize nodes (doubled count, varied sizes)
+    const nodeCount = 50
     nodesRef.current = Array.from({ length: nodeCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      opacity: Math.random() * 0.4 + 0.1
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      opacity: Math.random() * 0.6 + 0.3, // Brighter: 0.3-0.9 instead of 0.1-0.5
+      size: Math.random() * 3 + 1 // Size varies from 1-4px
     }))
 
     const animate = () => {
@@ -58,27 +60,28 @@ export default function FloatingOrbs() {
         node.x = Math.max(0, Math.min(canvas.width, node.x))
         node.y = Math.max(0, Math.min(canvas.height, node.y))
 
-        // Draw node
+        // Draw node with variable size
         ctx.beginPath()
-        ctx.arc(node.x, node.y, 2, 0, Math.PI * 2)
+        ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(168, 85, 247, ${node.opacity})`
         ctx.fill()
       })
 
-      // Draw connections
+      // Draw connections (increased distance and opacity for more connections)
       nodesRef.current.forEach((nodeA, i) => {
         nodesRef.current.slice(i + 1).forEach((nodeB) => {
           const distance = Math.sqrt(
             Math.pow(nodeA.x - nodeB.x, 2) + Math.pow(nodeA.y - nodeB.y, 2)
           )
 
-          if (distance < 150) {
-            const opacity = (1 - distance / 150) * 0.2
+          if (distance < 200) { // Increased from 150 to 200 for more connections
+            const opacity = (1 - distance / 200) * 0.4 // Increased opacity for visibility
+            const lineWidth = nodeA.size > 2 || nodeB.size > 2 ? 1.5 : 1 // Thicker lines for larger nodes
             ctx.beginPath()
             ctx.moveTo(nodeA.x, nodeA.y)
             ctx.lineTo(nodeB.x, nodeB.y)
             ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`
-            ctx.lineWidth = 1
+            ctx.lineWidth = lineWidth
             ctx.stroke()
           }
         })
@@ -100,7 +103,7 @@ export default function FloatingOrbs() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-30"
+      className="absolute inset-0 pointer-events-none opacity-40"
       style={{ zIndex: 1 }}
     />
   )

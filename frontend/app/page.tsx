@@ -13,10 +13,10 @@ export default function HomePage() {
             <h1 className="text-xl font-bold text-white">Trustless Academy</h1>
           </div>
           <nav className="flex items-center space-x-6">
-            <Link href="/tutorials" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="/tutorials" className="text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105">
               Tutorials
             </Link>
-            <Link href="/waitlist" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all">
+            <Link href="/waitlist" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all hover:scale-105 active:scale-95 transform">
               Join Waitlist
             </Link>
           </nav>
@@ -33,16 +33,17 @@ export default function HomePage() {
         {/* Hero Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-16">
           <div className="text-center mb-16">
-            <img src="/logos/TA-Hero-Logo-Text-White.png" alt="Trustless Academy" className="mx-auto mb-8 h-96 w-auto" />
-          <h1 className="text-5xl font-bold text-white mb-6">
-            Welcome to Trustless Academy
-          </h1>
-          <p className="text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Finally understand how blockchain actually works. Interactive experiences that let anyone explore Web3 concepts — no technical background needed.
-          </p>
+            <img src="/logos/TA-Hero-Logo-Text-White.png" alt="Trustless Academy" className="mx-auto mb-8 h-96 w-auto animate-fade-in" />
+            <p className="text-xl text-purple-300 mb-4 font-medium animate-slide-in-left">Trustless Academy</p>
+            <h1 className="text-6xl font-bold text-white mb-6 animate-fade-in">
+              Less trust = more truth
+            </h1>
+            <p className="text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8 animate-fade-in">
+              Finally understand how blockchain actually works. Interactive experiences that let anyone explore Web3 concepts — no technical background needed.
+            </p>
           <Link
             href="/tutorials"
-            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl"
+            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform"
           >
             Browse Tutorials →
           </Link>
@@ -52,21 +53,21 @@ export default function HomePage() {
       {/* Features - Outside particle network */}
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-colors">
+          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🎓</div>
             <h3 className="text-xl font-semibold text-white mb-3">Learn by Doing</h3>
             <p className="text-gray-400">
               No boring theory. Experience real blockchain interactions through simple clicks and guided exploration.
             </p>
           </div>
-          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-colors">
+          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🦆</div>
             <h3 className="text-xl font-semibold text-white mb-3">Friendly Guidance</h3>
             <p className="text-gray-400">
               Our duck mascot explains complex concepts in simple terms, making Web3 accessible to everyone.
             </p>
           </div>
-          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-colors">
+          <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="text-4xl mb-4">🔒</div>
             <h3 className="text-xl font-semibold text-white mb-3">Safe Environment</h3>
             <p className="text-gray-400">
@@ -79,7 +80,7 @@ export default function HomePage() {
         <div className="bg-slate-800/30 p-12 rounded-3xl border border-slate-700 mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">Available Tutorials</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/tutorials/what-is-blockchain" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 transition-all group">
+            <Link href="/tutorials/what-is-blockchain" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
               <div className="text-3xl mb-3">⛓️</div>
               <h4 className="font-semibold text-white group-hover:text-purple-400 transition-colors">What is Blockchain?</h4>
               <p className="text-sm text-gray-400 mt-2">Understand blocks, chains, and decentralization</p>
@@ -87,7 +88,7 @@ export default function HomePage() {
                 Start Reading →
               </div>
             </Link>
-            <Link href="/tutorials/what-is-ethereum" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 transition-all group">
+            <Link href="/tutorials/what-is-ethereum" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
               <div className="text-3xl mb-3">💎</div>
               <h4 className="font-semibold text-white group-hover:text-purple-400 transition-colors">What is Ethereum?</h4>
               <p className="text-sm text-gray-400 mt-2">Smart contracts, gas, and the EVM explained</p>
@@ -95,7 +96,7 @@ export default function HomePage() {
                 Start Reading →
               </div>
             </Link>
-            <Link href="/tutorials/token-standards" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 transition-all group">
+            <Link href="/tutorials/token-standards" className="bg-slate-800/70 p-6 rounded-xl border border-slate-700 hover:border-purple-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
               <div className="text-3xl mb-3">🪙</div>
               <h4 className="font-semibold text-white group-hover:text-purple-400 transition-colors">Token Standards</h4>
               <p className="text-sm text-gray-400 mt-2">Explore ERC-20, ERC-721, and ERC-1155</p>
@@ -103,7 +104,7 @@ export default function HomePage() {
                 Start Reading →
               </div>
             </Link>
-            <Link href="/tutorials/on-chain-kitchen" className="bg-gradient-to-br from-slate-800 to-slate-700 p-6 rounded-xl border-2 border-purple-500/50 hover:border-purple-400 transition-all group">
+            <Link href="/tutorials/on-chain-kitchen" className="bg-gradient-to-br from-slate-800 to-slate-700 p-6 rounded-xl border-2 border-purple-500/50 hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-2 transition-all duration-300 group">
               <div className="text-3xl mb-3">👨‍🍳</div>
               <h4 className="font-semibold text-white group-hover:text-purple-400 transition-colors">On-Chain Kitchen</h4>
               <p className="text-sm text-gray-400 mt-2">Interactive cooking tutorial with real transactions</p>
@@ -157,21 +158,21 @@ export default function HomePage() {
           </p>
           <Link
             href="/tutorials"
-            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl"
+            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform"
           >
             Start Learning Now →
           </Link>
         </div>
 
         {/* Join Waitlist CTA */}
-        <div className="bg-slate-700/30 p-12 rounded-3xl text-center border border-slate-600">
+        <div className="bg-slate-700/30 p-12 rounded-3xl text-center border border-slate-600 hover:border-purple-500/50 transition-all duration-300">
           <h2 className="text-3xl font-bold text-white mb-4">Want More Content?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Join our waitlist to be the first to know when we release new tutorials, courses, and interactive experiences!
           </p>
           <Link
             href="/waitlist"
-            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl"
+            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform"
           >
             Join the Waitlist →
           </Link>
@@ -196,26 +197,29 @@ export default function HomePage() {
             <div>
               <h4 className="font-semibold text-white mb-3">Learn</h4>
               <ul className="space-y-2">
-                <li><Link href="/tutorials" className="text-gray-400 hover:text-purple-400 transition-colors">All Tutorials</Link></li>
-                <li><Link href="/tutorials/what-is-blockchain" className="text-gray-400 hover:text-purple-400 transition-colors">What is Blockchain?</Link></li>
-                <li><Link href="/tutorials/what-is-ethereum" className="text-gray-400 hover:text-purple-400 transition-colors">What is Ethereum?</Link></li>
-                <li><Link href="/tutorials/on-chain-kitchen" className="text-gray-400 hover:text-purple-400 transition-colors">On-Chain Kitchen</Link></li>
+                <li><Link href="/tutorials" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">All Tutorials</Link></li>
+                <li><Link href="/tutorials/what-is-blockchain" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">What is Blockchain?</Link></li>
+                <li><Link href="/tutorials/what-is-ethereum" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">What is Ethereum?</Link></li>
+                <li><Link href="/tutorials/on-chain-kitchen" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">On-Chain Kitchen</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold text-white mb-3">Community</h4>
               <ul className="space-y-2">
-                <li><Link href="/waitlist" className="text-gray-400 hover:text-purple-400 transition-colors">Join Waitlist</Link></li>
-                <li><a href="https://github.com/anthropics/claude-code" className="text-gray-400 hover:text-purple-400 transition-colors">GitHub</a></li>
+                <li><Link href="/waitlist" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">Join Waitlist</Link></li>
+                <li><a href="https://twitter.com/jakejohndoe" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">X/Twitter</a></li>
+                <li><a href="https://github.com/jakejohndoe" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">GitHub</a></li>
                 <li><span className="text-gray-600">Discord (Coming Soon)</span></li>
-                <li><span className="text-gray-600">Twitter (Coming Soon)</span></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-800 pt-8 text-center">
-            <p className="text-gray-400">
-              © 2026 Trustless Academy • Learn Web3 by Doing • Open Source Education
-            </p>
+          <div className="border-t border-slate-800 pt-8">
+            <div className="text-center mb-4">
+              <p className="text-lg font-medium text-purple-300 mb-2">Less trust = more truth</p>
+              <p className="text-gray-400">
+                © 2026 Trustless Academy • Built by <a href="https://twitter.com/jakejohndoe" className="text-white hover:text-purple-400 transition-colors">@jakejohndoe</a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>

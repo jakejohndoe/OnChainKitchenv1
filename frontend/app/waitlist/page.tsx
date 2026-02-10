@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { supabase, WaitlistEntry } from '../../lib/supabase'
 import DuckMascot from '../../components/DuckMascot'
@@ -11,6 +11,44 @@ export default function WaitlistPage() {
   const [interest, setInterest] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<'idle' | 'success' | 'duplicate' | 'error'>('idle')
+  const [waitlistCount, setWaitlistCount] = useState<number | null>(null)
+  const [displayCount, setDisplayCount] = useState<number>(0)
+
+  // Fetch waitlist count
+  useEffect(() => {
+    const fetchWaitlistCount = async () => {
+      if (!supabase) return
+
+      try {
+        const { count, error } = await supabase
+          .from('waitlist')
+          .select('*', { count: 'exact', head: true })
+
+        if (!error && count && count > 0) {
+          setWaitlistCount(count)
+        }
+      } catch (error) {
+        console.error('Failed to fetch waitlist count:', error)
+      }
+    }
+
+    fetchWaitlistCount()
+  }, [])
+
+  // Count up animation
+  useEffect(() => {
+    if (waitlistCount && waitlistCount > displayCount) {
+      const increment = Math.ceil(waitlistCount / 30) // Animate over ~30 frames
+      const timer = setTimeout(() => {
+        setDisplayCount(prev => {
+          const next = prev + increment
+          return next >= waitlistCount ? waitlistCount : next
+        })
+      }, 50) // 50ms per frame for smooth animation
+
+      return () => clearTimeout(timer)
+    }
+  }, [waitlistCount, displayCount])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -92,17 +130,21 @@ export default function WaitlistPage() {
               </div>
 
               <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Learn Web3 by doing, not memorizing
+                Web3 clicks when you click things
               </h1>
 
               <p className="text-xl text-gray-300 mb-8 max-w-lg">
                 Interactive blockchain tutorials on real networks. No coding required. Just curiosity.
               </p>
 
-              {/* Social Proof */}
-              <div className="inline-flex items-center bg-purple-900/30 border border-purple-500/50 rounded-full px-4 py-2 mb-8">
-                <span className="text-purple-300 font-medium">🔥 Join 250+ early learners</span>
-              </div>
+              {/* Live Waitlist Counter */}
+              {waitlistCount && waitlistCount > 0 && (
+                <div className="inline-flex items-center bg-purple-900/30 border border-purple-500/50 rounded-full px-4 py-2 mb-8 animate-fade-in">
+                  <span className="text-purple-300 font-medium">
+                    🌱 {displayCount} people on the waitlist
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Right column: Features & Form */}
@@ -187,7 +229,7 @@ export default function WaitlistPage() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       placeholder="satoshi@trustless.academy"
-                      className="w-full px-4 py-4 bg-slate-900 border border-slate-600 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-lg"
+                      className="w-full px-4 py-4 bg-slate-900 border border-slate-600 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:shadow-lg focus:scale-[1.02] transition-all duration-300 text-lg"
                     />
                   </div>
 
@@ -202,7 +244,7 @@ export default function WaitlistPage() {
                       maxLength={200}
                       rows={2}
                       placeholder="DeFi, NFTs, DAOs, smart contracts..."
-                      className="w-full px-4 py-4 bg-slate-900 border border-slate-600 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+                      className="w-full px-4 py-4 bg-slate-900 border border-slate-600 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:shadow-lg focus:scale-[1.02] transition-all duration-300 resize-none"
                     />
                   </div>
 
@@ -215,7 +257,7 @@ export default function WaitlistPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting || !email}
-                    className="w-full bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 text-white font-bold py-4 px-8 rounded-xl hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 focus:outline-none focus:ring-4 focus:ring-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+                    className="w-full relative bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 text-white font-bold py-4 px-8 rounded-xl hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 focus:outline-none focus:ring-4 focus:ring-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transform hover:scale-105 active:scale-95 animate-pulse-subtle"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center">
@@ -231,7 +273,7 @@ export default function WaitlistPage() {
                   </button>
 
                   <p className="text-center text-gray-400 text-sm">
-                    Be first to access new tutorials. No spam, just learning.
+                    Takes 5 seconds. No wallet needed. No spam, just learning.
                   </p>
                 </form>
               </>
@@ -247,8 +289,11 @@ export default function WaitlistPage() {
       <footer className="bg-slate-900/80 backdrop-blur-sm border-t border-slate-700 py-6">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
-              Built by <span className="text-white font-medium">@jakejohndoe</span>
+            <div>
+              <p className="text-lg font-medium text-purple-300 mb-2">Less trust = more truth</p>
+              <div className="text-gray-400 text-sm">
+                Built by <span className="text-white font-medium">@jakejohndoe</span>
+              </div>
             </div>
             <div className="flex items-center space-x-6">
               <a

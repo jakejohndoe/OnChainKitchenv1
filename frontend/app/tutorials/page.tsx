@@ -81,8 +81,8 @@ export default function TutorialsPage() {
             <Link href="/tutorials" className="text-purple-400 font-medium">
               Tutorials
             </Link>
-            <Link href="/about" className="text-gray-300 hover:text-purple-400 transition-colors">
-              About
+            <Link href="/waitlist" className="text-gray-300 hover:text-purple-400 transition-colors duration-300 hover:scale-105">
+              Join Waitlist
             </Link>
           </nav>
         </div>
@@ -96,6 +96,7 @@ export default function TutorialsPage() {
           <h1 className="text-4xl font-bold text-white mb-4">
             Web3 Learning Path
           </h1>
+          <p className="text-xl text-purple-300 font-medium mb-4">Web3 clicks when you click things</p>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Start from the basics and progress through interactive experiences. Each lesson builds on the previous one, creating a complete learning journey.
           </p>
@@ -106,9 +107,9 @@ export default function TutorialsPage() {
           {tutorials.map((tutorial) => (
             <div
               key={tutorial.id}
-              className={`relative overflow-hidden rounded-2xl transition-all ${
+              className={`relative overflow-hidden rounded-2xl transition-all duration-300 ${
                 tutorial.status === 'available'
-                  ? 'bg-slate-800 border border-slate-700 hover:border-purple-500/50 shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-1'
+                  ? 'bg-slate-800 border border-slate-700 hover:border-purple-500/50 shadow-lg hover:shadow-purple-500/20 hover:shadow-xl transform hover:-translate-y-2 hover:scale-[1.02] group'
                   : 'bg-slate-800/50 border border-slate-700/50 opacity-75'
               }`}
             >
@@ -164,8 +165,9 @@ export default function TutorialsPage() {
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-lg font-medium text-purple-300 mb-2">Less trust = more truth</p>
           <p className="text-gray-400">
-            © 2026 Trustless Academy • Learn Web3 by Doing • Open Source Education
+            © 2026 Trustless Academy • Built by <a href="https://twitter.com/jakejohndoe" className="text-white hover:text-purple-400 transition-colors">@jakejohndoe</a>
           </p>
         </div>
       </footer>
@@ -190,7 +192,7 @@ function TutorialCard({ tutorial }: { tutorial: Tutorial }) {
         )}
       </div>
 
-      <h3 className="text-xl font-bold text-white mb-2">{tutorial.title}</h3>
+      <h3 className="text-xl font-bold text-white group-hover:text-purple-300 mb-2 transition-colors">{tutorial.title}</h3>
       <p className="text-gray-400 mb-4">{tutorial.description}</p>
 
       <div className="flex items-center gap-4 text-sm mb-4">
@@ -216,7 +218,7 @@ function TutorialCard({ tutorial }: { tutorial: Tutorial }) {
       </div>
 
       {tutorial.status === 'available' && (
-        <div className="mt-6 text-purple-400 font-medium flex items-center">
+        <div className="mt-6 text-purple-400 group-hover:text-purple-300 font-medium flex items-center transition-all group-hover:translate-x-1">
           Start Learning →
         </div>
       )}
