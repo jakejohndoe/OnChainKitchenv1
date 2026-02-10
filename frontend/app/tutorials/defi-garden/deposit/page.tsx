@@ -3,7 +3,7 @@
 import DuckMascot from '../../../../components/DuckMascot'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { formatEther, parseEther } from 'viem'
 import {
   SEED_TOKEN_ADDRESS,
@@ -70,7 +70,7 @@ export default function DepositPage() {
   })
 
   // Read current allowance
-  const { data: allowance } = useReadContract({
+  const { data: allowance, refetch: refetchAllowance } = useReadContract({
     address: SEED_TOKEN_ADDRESS,
     abi: FULL_SEED_ABI,
     functionName: 'allowance',
@@ -94,10 +94,20 @@ export default function DepositPage() {
   const hasEnoughAllowance = !!(allowance && depositAmount &&
     (allowance as bigint) >= parseEther(depositAmount))
 
-  // Update step based on allowance
-  if (hasEnoughAllowance && step === 'approve') {
-    setStep('deposit')
-  }
+  // Handle approval confirmation and step progression
+  useEffect(() => {
+    if (isApproveConfirmed) {
+      // Refetch allowance after approval confirmation
+      refetchAllowance()
+    }
+  }, [isApproveConfirmed, refetchAllowance])
+
+  // Auto-advance to deposit step when allowance is sufficient
+  useEffect(() => {
+    if (hasEnoughAllowance && step === 'approve') {
+      setStep('deposit')
+    }
+  }, [hasEnoughAllowance, step])
 
   const handleApprove = () => {
     if (!depositAmount || !address) return
@@ -290,7 +300,11 @@ export default function DepositPage() {
                       <h4 className="text-lg font-medium text-white">
                         Step A: Approve SEED Spending
                       </h4>
-                      {hasEnoughAllowance && <span className="text-green-400">✅ Approved</span>}
+                      {hasEnoughAllowance && (
+                        <span className="text-green-400 font-semibold animate-pulse">
+                          ✅ Approved!
+                        </span>
+                      )}
                     </div>
 
                     <p className="text-gray-400 mb-4 text-sm">
@@ -310,8 +324,8 @@ export default function DepositPage() {
                         }
                       </button>
                     ) : (
-                      <div className="text-green-400 text-center py-3 font-medium">
-                        ✅ SEED spending approved!
+                      <div className="bg-green-900/30 border border-green-500/50 text-green-400 text-center py-4 font-semibold rounded-lg">
+                        ✅ SEED spending approved! Ready to plant.
                       </div>
                     )}
                   </div>
