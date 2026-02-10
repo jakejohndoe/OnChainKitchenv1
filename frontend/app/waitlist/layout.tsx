@@ -1,16 +1,27 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Join the Waitlist | Trustless Academy',
-  description: 'Join the Trustless Academy waitlist to be the first to know about new tutorials, courses, and interactive Web3 learning experiences.',
+  title: 'Trustless Academy — Learn Web3 by Doing',
+  description: 'Interactive blockchain tutorials on real networks. No coding required.',
   openGraph: {
-    title: 'Join the Waitlist | Trustless Academy',
-    description: 'Be the first to know about new tutorials, courses, and interactive Web3 learning experiences.',
+    title: 'Trustless Academy — Learn Web3 by Doing',
+    description: 'Interactive blockchain tutorials on real networks. No coding required.',
     url: 'https://trustless.academy/waitlist',
+    images: [
+      {
+        url: '/logos/TA-Hero-Logo-Text.png',
+        width: 1200,
+        height: 630,
+        alt: 'Trustless Academy Logo',
+      },
+    ],
+    siteName: 'Trustless Academy',
   },
   twitter: {
-    title: 'Join the Waitlist | Trustless Academy',
-    description: 'Be the first to know about new tutorials, courses, and interactive Web3 learning experiences.',
+    card: 'summary_large_image',
+    title: 'Trustless Academy — Learn Web3 by Doing',
+    description: 'Interactive blockchain tutorials on real networks. No coding required.',
+    images: ['/logos/TA-Hero-Logo-Text.png'],
   },
 }
 

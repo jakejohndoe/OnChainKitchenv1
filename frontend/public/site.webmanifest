@@ -1,0 +1,21 @@
+{
+  "name": "Trustless Academy",
+  "short_name": "Trustless Academy",
+  "description": "Learn Web3 by doing, not memorizing. Interactive blockchain tutorials on real networks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#a855f7",
+  "icons": [
+    {
+      "src": "/logos/TA-Hero-Favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logos/TA-Hero-Favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
